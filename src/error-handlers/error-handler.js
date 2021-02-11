@@ -1,4 +1,4 @@
-const { NODE_ENV } = require('./config');
+const { NODE_ENV } = require('../config');
 
 function errorHandler(error, req, res, next) {
   const response = 
@@ -6,7 +6,7 @@ function errorHandler(error, req, res, next) {
       ? {error: 'Server error.'}
       : console.log(error)
         && {message: error.message, error};
-  res.status(500).json(response);
+  return res.status(500).send(response);
 };
 
 module.exports = errorHandler;

@@ -1,5 +1,11 @@
 const app = require('./app');
-const { PORT } = require('./config')
+const knex = require('knex');
+const { PORT, NODE_ENV, DATABASE_URL, TEST_DATABASE_URL } = require('./config');
+
+app.set('db', knex({
+  client: 'pg',
+  connection: (NODE_ENV==='test') ? TEST_DATABASE_URL : DATABASE_URL
+}));
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}.`)

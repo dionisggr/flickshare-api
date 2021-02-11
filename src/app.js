@@ -1,29 +1,21 @@
 require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const validation = require('./validation');
-const errorHandler = require('./error-handler');
-const { NODE_ENV } = require('./config');
+const morganLogger = require('./loggers/morgan-logger');
+const errorHandler = require('./error-handlers/error-handler');
+const { authorization } = require('./helpers/validation');
+const UserRouter = require('./routers/user-router');
 
 const app = express();
-const morganOption =
-  (NODE_ENV === 'production')
-    ? 'tiny'
-    : 'common';
 
 app.use(helmet());
 app.use(cors());
-app.use(morgan(morganOption));
-app.use(express.json()); // BodyParser
+app.use(morganLogger);
+app.use(express.json());
 
-app.use(validation);
-// APP CODE //
+// app.use(authorization);
+app.use(UserRouter);
 app.use(errorHandler);
-
-app.get('/', (req, res) => {
-  res.send("Hello, world!");
-});
 
 module.exports = app;
