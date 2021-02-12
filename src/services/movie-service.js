@@ -1,6 +1,6 @@
 const MovieService = {
   getAll(db) {
-    return db('list_movies')
+    return db('movies')
       .select('*');
   }
   ,
