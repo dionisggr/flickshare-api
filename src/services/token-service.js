@@ -5,7 +5,7 @@ const TokenService = {
   generate(payload) {
     const options = { expiresIn: JWT_EXPIRY, algorithm: 'HS256' };
 
-    return jwt.sign(payload, JWT_SECRET, options);
+    return jwt.sign(payload, JWT_SECRET, options)
   }
   ,
   validate(token) {

@@ -7,12 +7,23 @@ const validation = {
     const bearer = req.get('Authorization') || '';
     const auth = bearer.split('Bearer ')[1];
 
-    if (!auth) next('Missing Bearer token');
+    if (!auth) {
+      next('Missing Bearer token')
+    };
 
-    if (auth === API_KEY || auth === ADMIN_KEY) next();
+    if (auth === API_KEY) {
+      return next();
+    };
 
-    await TokenService.validate(auth)
+    if (auth === ADMIN_KEY) {
+      req.admin = true;
+      return next();
+    };
+    
+    const decoded = await TokenService.validate(auth)
       .catch(next);
+    
+    req.user_id = decoded.user_id;
     
     next();
   }

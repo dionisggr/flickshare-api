@@ -9,6 +9,10 @@ UserRouter.route('/')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
 
+    if (!req.admin) {
+      return next('Unauthorized access.');
+    };
+
     const users = await UserService.getAll(db)
       .catch(next);
     
@@ -40,9 +44,13 @@ UserRouter.route('/')
 UserRouter.route('/:user')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
-    const userID = req.params.user;
+    const user_id = req.params.user;
 
-    const user = await UserService.findByID(db, userID)
+    if (user_id !== req.user_id && !req.admin) {
+      return next('Unauthorized access');
+    };
+
+    const user = await UserService.findByID(db, user_id)
       .catch(next);
     
     return res.json(user);
@@ -50,6 +58,10 @@ UserRouter.route('/:user')
   .patch(async (req, res, next) => {
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
+
+    if (user_id !== req.user_id && !req.admin) {
+      return next('Unauthorized access');
+    };
 
     const {
       first_name, last_name, admin,
@@ -73,6 +85,10 @@ UserRouter.route('/:user')
   .delete(async (req, res, next) => {
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
+
+    if (user_id !== req.user_id && !req.admin) {
+      return next('Unauthorized access');
+    };
 
     await UserService.delete(db, user_id)
       .catch(next);

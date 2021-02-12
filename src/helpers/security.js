@@ -7,6 +7,7 @@ const Security = {
         object[key] = xss(value);
       };
     };
+    return object;
   }
 };
 

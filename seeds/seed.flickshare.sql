@@ -1,6 +1,6 @@
 BEGIN;
 
-TRUNCATE movies, lists, users RESTART IDENTITY CASCADE;
+TRUNCATE list_movies, movies, lists, users RESTART IDENTITY CASCADE;
 
 INSERT INTO users
   (username, first_name, last_name, email, password, admin)
@@ -48,10 +48,14 @@ VALUES
   (1, 1),
   (1, 2),
   (2, 2),
-  (2, 3),
-  (3, 3),
-  (3, 4),
-  (4, 4),
-  (4, 5);
+  (2, 3);
+
+INSERT INTO list_movies
+  (list_id, movie_id, user_id)
+VALUES
+  (3, 3, 1),
+  (3, 4, 1),
+  (4, 4, 2),
+  (4, 5, 3);
 
 COMMIT;
