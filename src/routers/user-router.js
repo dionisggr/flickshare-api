@@ -1,5 +1,5 @@
 const express = require('express');
-const { authorization, authentication } = require('../helpers/validation');
+const validation = require('../helpers/validation');
 const UserService = require('../services/user-service');
 const Security = require('../helpers/security');
 
@@ -38,7 +38,7 @@ UserRouter.route('/')
     await UserService.create(db, newUser)
       .catch(next);
     
-    authentication(req, res, next);
+    validation.authentication(req, res, next);
   })
 
 UserRouter.route('/:user')
