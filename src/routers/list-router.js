@@ -1,5 +1,6 @@
 const express = require('express');
 const ListService = require('../services/list-service');
+const Security = require('../helpers/security')
 
 const ListRouter = express.Router();
 
@@ -18,7 +19,7 @@ ListRouter.route('/')
 
     if (!name) next('Invalid data.');
 
-    const list = { name };
+    const list = Security.applyXSS({ name });
 
     if (user_id) {
       list.user_id = user_id;
@@ -45,7 +46,7 @@ ListRouter.route('/:list')
     const listID = parseInt(req.params.list);
 
     const { name } = req.body;
-    const newValues = { name };
+    const newValues = Security.applyXSS({ name });
 
     const editedList = await ListService.edit(db, listID, newValues)
       .catch(next);

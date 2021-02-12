@@ -1,5 +1,7 @@
 const express = require('express');
+const xss = require('xss');
 const ListService = require('../services/list-service');
+const Security = require('../helpers/security')
 
 const AdminRouter = express.Router();
 
@@ -16,7 +18,7 @@ AdminRouter.route('/lists')
     const db = req.app.get('db');
     const { name } = req.body;
 
-    const list = { name };
+    const list = Security.applyXSS({ name });
 
     const newList = await ListService.create(db, list)
       .catch(next);

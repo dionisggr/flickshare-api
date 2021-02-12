@@ -1,6 +1,7 @@
 const express = require('express');
 const { authorization, authentication } = require('../helpers/validation');
-const UserService = require('../services/user-service')
+const UserService = require('../services/user-service');
+const Security = require('../helpers/security');
 
 const UserRouter = express.Router();
 
@@ -21,10 +22,10 @@ UserRouter.route('/')
       username, password, email,
     } = req.body;
 
-    const newUser = {
+    const newUser = Security.applyXSS({
       first_name, last_name, admin,
       username, password, email,
-    };
+    });
 
     for (const [key, value] of Object.entries(newUser)) {
       if (!value && value !== false) next(`Missing ${key}.`)
@@ -55,10 +56,10 @@ UserRouter.route('/:user')
       username, password, email
     } = req.body;
 
-    const newValues = {
+    const newValues = Security.applyXSS({
       first_name, last_name, admin,
       username, password, email
-    };
+    });
 
     for (const [key, value] of Object.entries(newValues)) {
       if (!value && value !== false) delete newValues[key];

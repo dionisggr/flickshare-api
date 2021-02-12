@@ -1,5 +1,6 @@
 const express = require('express');
 const MovieService = require('../services/movie-service');
+const Security = require('../helpers/security')
 
 const MovieRouter = express.Router();
 
@@ -18,7 +19,7 @@ MovieRouter.route('/:list/movies')
     const list_id = req.params.list;
     const { movie_id } = req.body;
 
-    const movie = { movie_id, list_id };
+    const movie = Security.applyXSS({ movie_id, list_id });
 
     const newMovie = await MovieService.add(db, movie)
       .catch(next);
