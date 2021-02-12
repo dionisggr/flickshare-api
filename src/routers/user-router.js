@@ -4,7 +4,7 @@ const UserService = require('../services/user-service')
 
 const UserRouter = express.Router();
 
-UserRouter.route('/users')
+UserRouter.route('/')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
 
@@ -36,7 +36,7 @@ UserRouter.route('/users')
     authentication(req, res, next);
   })
 
-UserRouter.route('/users/:user')
+UserRouter.route('/:user')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
     const userID = req.params.user;
