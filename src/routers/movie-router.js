@@ -12,8 +12,38 @@ MovieRouter.route('/')
     const movies = await MovieService.getAll(db)
       .catch(next);
     
-    return res.json(movies);    
+    return res.json(movies);
   })
+  .post(async (req, res, next) => {
+    const db = req.app.get('db');
+    const {
+      title: name, genre_ids,
+      id: tmdb_id, overview: description,
+      vote_average: avg_vote, poster_path: poster,
+      release_date, popularity, vote_count
+    } = req.body;
+
+    const movie = Security.applyXSS({
+      name, tmdb_id, poster,
+      description, avg_vote,
+      release_date, popularity,
+      vote_count
+    });
+
+    try {
+      const newMovie = await MovieService.add(db, movie);
+      const { movie_id } = newMovie;
+
+      const genres = genre_ids.map(genre_id => {
+        return { genre_id, movie_id };
+      });
+
+      await MovieService.addMovieGenres(db, genres);
+
+      return res.status(201).json(newMovie);
+    } catch (error) { return next(error) };
+
+  });
 
 MovieRouter.route('/lists/:list')
   .all(async (req, res, next) => {
@@ -36,20 +66,46 @@ MovieRouter.route('/lists/:list')
     const listMovies = await MovieService.getListMovies(db, list_id)
       .catch(next);
     
-    return res.json(listMovies);    
+    return res.json(listMovies);
   })
   .post(async (req, res, next) => {
     const db = req.app.get('db');
     const list_id = parseInt(req.params.list);
-    const { movie_id } = req.body;
+    const {
+      title: name, genre_ids,
+      id: tmdb_id, overview: description,
+      vote_average: avg_vote, poster_path: poster,
+      release_date, popularity, vote_count
+    } = req.body;
 
-    const movie = Security.applyXSS({ movie_id, list_id });
+    const movie = Security.applyXSS({
+      name, tmdb_id, poster,
+      description, avg_vote,
+      release_date, popularity,
+      vote_count
+    });
 
-    const newMovie = await MovieService.add(db, movie)
-      .catch(next);
+    try {
+      let foundMovie = await MovieService.existsInDatabase(db, tmdb_id);
 
-    return res.status(201).send(newMovie);
-  })
+      if (!foundMovie) {
+        movie.genres = genre_ids.map(genre_id => {
+          return { genre_id, movie_id };
+        });
+
+        foundMovie = await MovieService.add(db, movie);
+      };
+
+      const { movie_id } = foundMovie;
+
+      const listMovie = Security.applyXSS({ movie_id, list_id });
+      
+      const newMovie = await MovieService.addToList(db, listMovie);
+      
+      return res.status(201).json(newMovie);
+    } catch (error) { return next(error) };
+
+  });
 
 MovieRouter.route('/:movie/lists/:list')
   .delete(async (req, res, next) => {
@@ -68,6 +124,6 @@ MovieRouter.route('/:movie/lists/:list')
       .catch(next);
 
     return res.status(301).end();
-  })
+  });
 
 module.exports = MovieRouter;

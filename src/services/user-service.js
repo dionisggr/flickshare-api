@@ -6,10 +6,11 @@ const UserService = {
       .first();
   }
   ,
-  matchingPassword(db, username, password) {
+  findPassword(db, username) {
     return db('users')
-      .select('*')
-      .where({ username, password })
+      .select('password')
+      .where({ username })
+      .first();
   }
   ,
   findByID(db, user_id) {

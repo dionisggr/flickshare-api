@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const validation = require('../helpers/validation');
 const UserService = require('../services/user-service');
 const Security = require('../helpers/security');
@@ -35,8 +36,12 @@ UserRouter.route('/')
       if (!value && value !== false) next(`Missing ${key}.`)
     };
 
-    await UserService.create(db, newUser)
-      .catch(next);
+    try {
+      newUser.password = await bcrypt.hash(newUser.password, 8);
+
+      await UserService.create(db, newUser);
+
+    } catch (error) { return next(error) };
     
     validation.authentication(req, res, next);
   })

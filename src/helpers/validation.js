@@ -1,4 +1,5 @@
 const { API_KEY, ADMIN_KEY } = require('../config');
+const bcrypt = require('bcrypt');
 const UserService = require('../services/user-service');
 const TokenService = require('../services/token-service');
 
@@ -36,7 +37,14 @@ const validation = {
       const payload = await UserService.getUsernameData(db, username);
       // Returns 'user_id' and 'admin' boolean
     
-      await UserService.matchingPassword(db, username, password);
+      const found = await UserService.findPassword(db, username);
+
+      await bcrypt.compare(password, found.password)
+        .then(result => {
+          if (!result) {
+            return next('Invalid password.');
+          };
+        });
     
       const token = await TokenService.generate(payload);
 

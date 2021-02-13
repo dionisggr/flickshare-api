@@ -17,6 +17,13 @@ const MovieService = {
   }
   ,
   add(db, movie) {
+    return db('movies')
+      .insert(movie)
+      .returning('*')
+      .then(rows => rows[0]);
+  }
+  ,
+  addToList(db, movie) {
     return db('list_movies')
       .insert(movie)
       .returning('*')
@@ -38,6 +45,17 @@ const MovieService = {
       .del();
   }
   ,
+  existsInDatabase(db, tmdb_id) {
+    return db('movies')
+      .select('*')
+      .where({ tmdb_id })
+      .first();
+  }
+  ,
+  addMovieGenres(db, genres) {
+    return db('movie_genres')
+      .insert(genres)
+  }
 };
 
 module.exports = MovieService;

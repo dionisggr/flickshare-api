@@ -31,7 +31,7 @@ ListRouter.route('/')
     const list = Security.applyXSS({ name });
 
     if (user_id) {
-      await UserService.findByID(user_id)
+      await UserService.findByID(db, user_id)
         .catch(next);
       // Check if user exists
 
