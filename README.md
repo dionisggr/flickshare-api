@@ -1,4 +1,4 @@
-# Flickshare API!
+# Flickshare API
 A simple API stop for the Flickshare App for all HTTP-related requests.
 
 The app allows users to create an account, created ordered lists of movie interests and receive suggestions based on these, and if connected, your friends lists.
@@ -8,7 +8,7 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user. The movie data contains properties from its original TMDB (The Movie Database) JSON object. Properties in the app include its TMDB ID, description, release date, popularity score, poster image URL, vote count and average vote.
 
 ### API URL:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://cryptic-badlands-24275.herokuapp.com/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://cryptic-badlands-24275.herokuapp.com/ *(Landing Page)*
 
 ### Client Live
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(Pending)*
@@ -65,7 +65,7 @@ Each endpoint manipulates information related to users.
 
 #### List related
 Each endpoint manipulates information of general and user lists.
-- [Create List](): `GET /api/lists`
+- [Create List](): `POST /api/lists`
 
 - [Get Main Lists](): `GET /api/lists/main` \
 *(General suggestion/category lists not associated to users)*
@@ -94,7 +94,7 @@ Each endpoint manipulates information related access / token management.
 #### Admin related
 Each endpoint manipulates information related to all data, only able to be accessed by an Admin user. __Admins can manipulate all previous endpoints as well.__
 - [Get All Users](): `GET /api/users`
-- [Get All Lists](): `GET /api/lists/`
+- [Get All Lists](): `GET /api/lists`
 
 ---
 ## Local Dev Set Up
