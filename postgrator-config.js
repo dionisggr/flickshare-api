@@ -1,7 +1,8 @@
 require('dotenv').config();
+const pg = require('pg');
 const { DATABASE_URL, TEST_DATABASE_URL, NODE_ENV } = require('./src/config');
 
-console.log(DATABASE_URL, TEST_DATABASE_URL);
+pg.defaults.ssl = process.env.NODE_ENV === "production";
 
 module.exports = {
   'migrationsDirectory': 'migrations',
