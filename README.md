@@ -35,7 +35,7 @@ Closed endpoints that require a valid username and password to be included in th
 #### Login
 
 - Step 1: *(Generate JSON Web Token)*
-  - `POST /api/users`
+  - `POST /api/login`
     - 'Admin' credentials
       - Username: `admin`
       - Password: `password`
@@ -57,7 +57,7 @@ headers" {'Content-Type': 'application/json'}
 
 #### User related
 Each endpoint manipulates information related to users.
-- [Create User](): `POST /api/users`
+- [Create User (Register)](): `POST /api/users`
 
 - [Get User](): `GET /api/users/:user`
 - [Edit User](): `PATCH /api/users/:user`
@@ -89,6 +89,7 @@ Each endpoint manipulates information related to the movies in lists.
 
 #### Access / Token related
 Each endpoint manipulates information related access / token management.
+- [Login](): `POST /api/login`
 - [Refresh JWT Token](): `PATCH /api/token`
 
 #### Admin related

@@ -9,7 +9,7 @@ const validation = {
     const auth = bearer.split('Bearer ')[1];
 
     if (!auth) {
-      next('Missing Bearer token')
+      return next('Missing Bearer token')
     };
 
     if (auth === API_KEY) {
@@ -39,12 +39,9 @@ const validation = {
     
       const found = await UserService.findPassword(db, username);
 
-      await bcrypt.compare(password, found.password)
-        .then(result => {
-          if (!result) {
-            return next('Invalid password.');
-          };
-        });
+      const passwordsMatch = await bcrypt.compare(password, found.password);
+
+      if (!passwordsMatch) return next('Invalid password.');
     
       const token = await TokenService.generate(payload);
 

@@ -21,7 +21,7 @@ app.use(authorization);
 app.use('/api/users', UserRouter);
 app.use('/api/lists', ListRouter);
 app.use('/api/movies', MovieRouter);
-app.use('/api/token', AccessRouter);
+app.use('/api', AccessRouter);
 app.use(errorHandler);
 
 module.exports = app;
