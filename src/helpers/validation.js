@@ -50,7 +50,7 @@ const validation = {
 
       return res.status(201).send({ flickshareToken: token });
       
-    } catch (error) { next(error) };
+    } catch (error) { return next(error) };
   }
   ,
   refreshToken: async (req, res, next) => {
@@ -63,7 +63,7 @@ const validation = {
 
       return res.json({ flickshareToken: newToken });
 
-    } catch (error) { next(error) };
+    } catch (error) { return next(error) };
   }
 };
 
