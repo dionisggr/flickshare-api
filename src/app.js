@@ -8,6 +8,7 @@ const { authorization } = require('./helpers/validation');
 const UserRouter = require('./routers/user-router');
 const ListRouter = require('./routers/list-router');
 const MovieRouter = require('./routers/movie-router');
+const AccessRouter = require('./routers/access-router');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(authorization);
 app.use('/api/users', UserRouter);
 app.use('/api/lists', ListRouter);
 app.use('/api/movies', MovieRouter);
+app.use('/api/token', AccessRouter);
 app.use(errorHandler);
 
 module.exports = app;
