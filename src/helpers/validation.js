@@ -21,10 +21,10 @@ const validation = {
       return next();
     };
     
-    const decoded = await TokenService.validate(auth)
-      .catch(next);
-    
-    req.user_id = decoded.user_id;
+    try {
+      const decoded = await TokenService.validate(auth);
+      req.user_id = decoded.user_id;
+    } catch (error) { return next('Unauthorized access.') };
     
     next();
   }

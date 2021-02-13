@@ -9,7 +9,8 @@ const TokenService = {
   }
   ,
   validate(token) {
-    return jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] });
+    return jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] }, () => {
+    })
   }
 };
 
