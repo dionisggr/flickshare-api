@@ -11,7 +11,7 @@ const MovieService = {
   }
   ,
   findByID(db, movie_id) {
-    return db('list_movies')
+    return db('movies')
       .select('*')
       .where({ movie_id });
   }

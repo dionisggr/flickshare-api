@@ -45,6 +45,17 @@ MovieRouter.route('/')
 
   });
 
+MovieRouter.route('/:movie')
+  .get(async (req, res, next) => {
+    const db = req.app.get('db');
+    const movie_id = req.params.movie;
+
+    const movie = await MovieService.findByID(db, movie_id)
+      .catch(next);
+
+    return res.json(movie);
+  })
+
 MovieRouter.route('/lists/:list')
   .all(async (req, res, next) => {
     const db = req.app.get('db');
