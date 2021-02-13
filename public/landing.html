@@ -41,6 +41,7 @@
     overflow: auto;
     margin-bottom: 25px;
     max-width: 700px;
+    min-width: 275px;
   }
 
   .code-block {
@@ -64,6 +65,10 @@
     text-align: center;
     max-width: 700px;
     margin-bottom: 25px;
+  }
+
+  table {
+    width: 100%
   }
 
   th {
@@ -578,6 +583,12 @@
         </thead>
         <tbody>
           <tr>
+            <td><code>list</code></td>
+            <td>string</td>
+            <td>path</td>
+            <td>List ID</td>
+          </tr>
+          <tr>
             <td><code>name</code></td>
             <td>string</td>
             <td>header</td>
@@ -603,7 +614,7 @@
       <br />
       <br />
 
-      <h3 id="delete-project">Delete List</h3>
+      <h3 id="delete-list">Delete List</h3>
       <ul>
         <li><b>URL:</b> <code>/api/lists/:list</code></li>
         <li><b>Method:</b> <code>DELETE</code></li>
@@ -624,10 +635,10 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>projectID</code></td>
+            <td><code>list</code></td>
             <td>integer</td>
             <td>path</td>
-            <td>Project ID (Primary Key)</td>
+            <td>List ID</td>
           </tr>
         </tbody>
       </table>
@@ -642,8 +653,8 @@
     <br />
     <br />
 
-    <div class='issues'>
-      <h3 id="get-issues">Get All Movies</h3>
+    <div class='movies'>
+      <h3 id="get-movies">Get All Movies</h3>
       <ul>
         <li><b>URL:</b> <code>/api/movies</code><br></li>
         <li><b>Method:</b> <code>GET</code><br></li>
@@ -674,12 +685,30 @@
 
       <br />
 
-      <h3 id="get-issues">Get List Movies</h3>
+      <h3 id="get-list-movies">Get List Movies</h3>
       <ul>
         <li><b>URL:</b> <code>/api/movies/lists/:list</code><br></li>
         <li><b>Method:</b> <code>GET</code><br></li>
         <li><b>Auth required:</b> Yes</li>
       </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>In</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>list</code></td>
+            <td>integer</td>
+            <td>path</td>
+            <td>List ID</td>
+          </tr>
+        </tbody>
+      </table>
       <h4 id="success-reponse">Success Reponse</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
@@ -698,7 +727,7 @@
 
       <br />
 
-      <h3 id="add-issue">Add Movie to Database</h3>
+      <h3 id="add-movie-database">Add Movie to Database</h3>
       <ul>
         <li><b>URL:</b> <code>/api/movies</code><br></li>
         <li><b>Method:</b> <code>POST</code><br></li>
@@ -797,7 +826,7 @@
 
       <br />
 
-      <h3 id="add-issue">Add Movie to List</h3>
+      <h3 id="add-movie-list">Add Movie to List</h3>
       <ul>
         <li><b>URL:</b> <code>/api/movies/lists/:list</code><br></li>
         <li><b>Method:</b> <code>POST</code><br></li>
@@ -811,7 +840,6 @@
       <p><i>Requires <code>headers: {&#39;Content-Type&#39;: &#39;application/json&#39;}</code></i></p>
       <code class='code-block'>
         {
-          "list_id": 2,
           "movie_id": 1
         }
       </code>
@@ -826,9 +854,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>list_id</code></td>
+            <td><code>list</code></td>
             <td>integer</td>
-            <td>header</td>
+            <td>path</td>
             <td>List ID</td>
           </tr>
           <tr>
@@ -848,7 +876,7 @@
 
       <br />
 
-      <h3 id="delete-issue">Delete List Movie</h3>
+      <h3 id="delete-list">Delete List Movie</h3>
       <ul>
         <li><b>URL:</b> <code>/api/movies/lists/:list</code><br></li>
         <li><b>Method:</b> <code>DELETE</code><br></li>
@@ -869,7 +897,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>issueID</code></td>
+            <td><code>list</code></td>
             <td>integer</td>
             <td>path</td>
             <td>Project ID (Primary Key)</td>
@@ -1039,6 +1067,12 @@
         </thead>
         <tbody>
           <tr>
+            <td><code>user</code></td>
+            <td>string</td>
+            <td>path</td>
+            <td>User ID</td>
+          </tr>
+          <tr>
             <td><code>username</code></td>
             <td>string</td>
             <td>header</td>
@@ -1111,10 +1145,10 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>userID</code></td>
+            <td><code>user</code></td>
             <td>integer</td>
             <td>path</td>
-            <td>User ID (Primary Key)</td>
+            <td>User ID</td>
           </tr>
         </tbody>
       </table>
