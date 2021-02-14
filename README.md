@@ -21,7 +21,7 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 
 ### Languages/Tools
 - **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, HTML5, CI scripts
-- **Loggers:** Morgan \
+- **Loggers:** Morgan
 - **Securities:** XSS, CORS, Helmet
 
 ---
