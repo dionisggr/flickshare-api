@@ -26,6 +26,38 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 
 ---
 
+## Back-End Structure
+- Users (database table)
+  - user_id (auto-generated)
+- Movies (database table)
+  - movie_id (auto-generated)
+- Genres (database table)
+  - genre_id (auto-generated)
+- Movie Genres (database table)
+  - movie_id (references movies.movie_id)
+  - genre_id (references genres.genre_id)
+- Lists (database table)
+  - list_id (auto-generated)
+- List Movies (database table)
+  - movie_id (references movies.movie_id)
+  - list_id (references lists.list_id)
+
+---
+
+API Overview
+```text
+    /api
+    .
+    ├── /users
+    │   └── POST
+    │       ├── /login
+    ├── /users
+    │   └── POST
+    │       └── /
+```
+
+---
+
 ## API Instructions
 
 ### Endpoints that require Authentication
@@ -94,6 +126,16 @@ Each endpoint manipulates information related to all data, only able to be acces
 - [Get All Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists`
 
 ---
+
+## Development Roadmap
+This is v1.0 of the app, but future enhancements are expected to include:
+- Implementation of movie likes
+- Implementation of list likes
+- Sending movie-list suggestions
+- Copy other user's lists
+
+---
+
 ## Local Dev Set Up
 Start a database server with `pg_ctl start`.
 
