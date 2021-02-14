@@ -102,8 +102,8 @@
           <h3>Resources</h3>
           <ul>
             <li><a href="/api/users">/users</a> <sup>x5</sup></li>
-            <li><a href="/api/lists">/projects</a> <sup>x10</sup></li>
-            <li><a href="/api/movies">/issues</a> <sup>x5</sup></li>
+            <li><a href="/api/lists">/lists</a> <sup>x10</sup></li>
+            <li><a href="/api/movies">/movies</a> <sup>x5</sup></li>
           </ul>
         </div>
         <p>To access and modify resources, you can use any HTTP method:</p>
@@ -169,10 +169,10 @@
         <li><a href="https://github.com/dionisggr/devmap-api/wiki/Access-Permission">Login</a>:
           <code>POST /api/login</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Projects">Get Main Lists</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Lists">Get Main Lists</a>:
           <code>GET /api/lists/main</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Issues">Get All Movies</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Movies">Get All Movies</a>:
           <code>GET /api/movies</code>
         </li>
       </ul>
@@ -191,7 +191,7 @@
         <li><a href="https://github.com/dionisggr/devmap-api/wiki/Access-Permission">Edit User Info</a>:
           <code>PATCH /api/users/:user</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Projects">Delete User Account</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Lists">Delete User Account</a>:
           <code>DELETE /api/users/:user</code>
         </li>
       </ul>
@@ -199,16 +199,16 @@
       <h4>List related</h4>
       <p>Each endpoint manipulates information of general and user lists.</p>
       <ul>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Issues">Create a List</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Movies">Create a List</a>:
           <code>POST /api/lists</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Issues">Get List</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Movies">Get List</a>:
           <code>GET /api/lists/:list</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Issues">Edit List</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Movies">Edit List</a>:
           <code>PATCH /api/lists/:list</code>
         </li>
-        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Issues">Delete List</a>:
+        <li><a href="https://github.com/dionisggr/devmap-api/wiki/Movies">Delete List</a>:
           <code>DELETE /api/lists/:list</code>
         </li>
       </ul>
@@ -242,7 +242,7 @@
       <p>Each endpoint manipulates information related access / token management.</p>
       <ul>
         <li><a href="https://github.com/dionisggr/devmap-api/wiki/Users">Login</a>:
-          <code>PATCH /api/login</code>
+          <code>POST /api/login</code>
         </li>
       <ul>
         <li><a href="https://github.com/dionisggr/devmap-api/wiki/Users">Refresh JWT Token</a>:
@@ -276,7 +276,7 @@
         <li><b>Method:</b> <code>GET</code></li>
         <li><b>Auth required:</b> No</li>
       </ul>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li><b>Content example</b></li>
@@ -327,7 +327,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li><b>Content example</b></li>
@@ -370,7 +370,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li><b>Content example</b></li>
@@ -452,7 +452,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code></li>
         <li><b>Content example</b></li>
@@ -474,10 +474,11 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li><b>Content example</b></li>
@@ -501,6 +502,41 @@
 
       <br />
 
+      <h3 id="get-lists">Get Main Lists</h3>
+      <ul>
+        <li><b>URL:</b> <code>/api/lists/main</code></li>
+        <li><b>Method:</b> <code>GET</code></li>
+        <li><b>Auth required:</b> Yes</li>
+        <ul>
+          <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
+          <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
+        </ul>
+      </ul>
+      <h4 id="success-response">Success Response</h4>
+      <ul>
+        <li><b>Code:</b> <code>200 OK</code></li>
+        <li><b>Content example</b></li>
+      </ul>
+      <code class='code-block'>
+        [
+          {
+            "list_id": "2",
+            "name": "List Name 2",
+            "user_id": null
+          },
+          {
+            "list_id": "3",
+            "name": "List Name 3",
+            "user_id": null
+          }
+      
+          ...
+        ]
+      </code>
+
+      <br />
+
       <h3 id="add-list">Create List</h3>
       <ul>
         <li><b>URL:</b> <code>/api/lists</code></li>
@@ -508,6 +544,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -533,7 +570,7 @@
             <td><code>name</code></td>
             <td>string</td>
             <td>header</td>
-            <td>Name of project</td>
+            <td>Name of list</td>
           </tr>
           <tr>
             <td><code>user_id</code></td>
@@ -543,7 +580,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code></li>
         <li><b>Content example</b></li>
@@ -553,7 +590,6 @@
           "list_id": 3,
           "name": "New List Name",
           "user_id": 1
-
         }
       </code>
 
@@ -566,6 +602,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -588,7 +625,7 @@
         <tbody>
           <tr>
             <td><code>list</code></td>
-            <td>string</td>
+            <td>integer</td>
             <td>path</td>
             <td>List ID</td>
           </tr>
@@ -600,7 +637,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code> <i>(Resource updated successfully, and refreshes.)</i></li>
         <li>Content example</i>
@@ -625,6 +662,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -646,7 +684,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>301 Moved Permanently</code></li>
         <li>Content example</i>
@@ -664,7 +702,7 @@
         <li><b>Method:</b> <code>GET</code><br></li>
         <li><b>Auth required:</b> No</li>
       </ul>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li>Content example</i>
@@ -713,7 +751,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li>Content example</i>
@@ -738,6 +776,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -809,7 +848,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code></li>
         <li>Content example</i>
@@ -837,6 +876,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -871,7 +911,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code></li>
         <li>Content example</i>
@@ -887,6 +927,7 @@
         <li><b>Auth required:</b> Yes</li>
         <ul>
           <li><code>Bearer my-secret-key</code></li>
+          <li><code>Bearer my-secret-admin</code></li>
           <li><code>Bearer &lt;JSON Web Token&gt;</code></li>
         </ul>
       </ul>
@@ -904,11 +945,11 @@
             <td><code>list</code></td>
             <td>integer</td>
             <td>path</td>
-            <td>Project ID (Primary Key)</td>
+            <td>List ID</td>
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>301 Moved Permanently</code></li>
         <li>Content example</i>
@@ -929,7 +970,7 @@
           <li><code>Bearer my-secret-admin</code></li>
         </ul>
       </ul>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>200 OK</code></li>
         <li>Content example</i>
@@ -1020,7 +1061,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code></li>
         <li>Content example</i>
@@ -1108,7 +1149,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>201 Created</code> <i>(Resource updated successfully, and refreshes.)d</i></li>
         <li>Content example</i>
@@ -1156,7 +1197,7 @@
           </tr>
         </tbody>
       </table>
-      <h4 id="success-reponse">Success Reponse</h4>
+      <h4 id="success-response">Success Response</h4>
       <ul>
         <li><b>Code:</b> <code>301 Moved Permanently</code></li>
         <li>Content example</i>
@@ -1164,9 +1205,11 @@
       <p>&lt;<i>No Content</i>&gt;</p>
     </div>
     <h4>More Info</h4>
-    <p>View <a href="https://github.com/dionisggr/flickshare-api/blob/main/README.md">README</a></p>
+    <p>View <a href="../README.md">README</a></p>
+
     <br />
     <br />
+    
     </div>
   </main>
   <footer></footer>
