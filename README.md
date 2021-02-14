@@ -56,8 +56,7 @@ headers" {'Content-Type': 'application/json'}
 
 #### User related
 Each endpoint manipulates information related to users.
-- [Create User (Register)](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
-
+- [Create User (Register)](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users` \
 - [Get User](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users/:user`
 - [Edit User](https://github.com/dionisggr/flickshare-api/wiki/Users): `PATCH /api/users/:user`
 - [Delete User](https://github.com/dionisggr/flickshare-api/wiki/Users): `DELETE /api/users/:user`
@@ -66,7 +65,7 @@ Each endpoint manipulates information related to users.
 Each endpoint manipulates information of general and user lists.
 - [Get Main Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists/main` \
 *(General suggestion/category lists not associated to users)*
-- [Create List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `POST /api/lists`
+- [Create List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `POST /api/lists` \
 - [Get List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists/:list`
 - [Edit List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `PATCH /api/lists/:list`
 - [Delete List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `DELETE /api/lists/:list`
@@ -81,18 +80,21 @@ Each endpoint manipulates information related to movie data.
 #### Movie-List related
 Each endpoint manipulates information related to the movies in lists.
 - [Get List Movies](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies/lists/:list`
-- [Add Movie to list](https://github.com/dionisggr/flickshare-api/wiki/Movies): `POST /api/movies/lists/:list`
+- [Add Movie to list](https://github.com/dionisggr/flickshare-api/wiki/Movies): `POST /api/movies/lists/:list` \
 - [Delete Movie from list](https://github.com/dionisggr/flickshare-api/wiki/Movies): `DELETE /api/movies/:movie/lists/:list`
 
 #### Access / Token related
 Each endpoint manipulates information related access / token management.
 - [Login](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `POST /api/login`
+
 - [Register](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
+
 - [Refresh JWT Token](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `PATCH /api/token`
 
 #### Admin related
 Each endpoint manipulates information related to all data, only able to be accessed by an Admin user. __Admins can manipulate all previous endpoints as well.__
 - [Get All Users](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users`
+
 - [Get All Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists`
 
 ---
