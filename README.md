@@ -44,20 +44,6 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 
 ---
 
-API Overview
-```text
-    /api
-    .
-    ├── /users
-    │   └── POST
-    │       ├── /login
-    ├── /users
-    │   └── POST
-    │       └── /
-```
-
----
-
 ## API Instructions
 
 ### Endpoints that require Authentication
