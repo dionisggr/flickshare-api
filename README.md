@@ -20,10 +20,9 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Heroku
 
 ### Languages/Tools
-Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, HTML5, CI scripts
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Loggers:** Morgan \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Securities:** XSS, CORS, Helmet
+- **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, HTML5, CI scripts
+- **Loggers:** Morgan \
+- **Securities:** XSS, CORS, Helmet
 
 ---
 
