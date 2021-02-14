@@ -5,7 +5,7 @@ The app allows users to create an account, created ordered lists of movie intere
 
 More info can be found at the [client repo](https://github.com/dionisggr/flickshare-client).
 
-This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user. The movie data contains properties from its original TMDB (The Movie Database) JSON object. Properties in the app include its TMDB ID, description, release date, popularity score, poster image URL, vote count and average vote.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user. The movie data contains properties from its original TMDB (The Movie Database) JSON object. Properties in the app include its TMDB ID, description, release date, popularity score, poster image URL, vote count and average vote.
 
 ### API URL:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://cryptic-badlands-24275.herokuapp.com/ *(Landing Page)*
