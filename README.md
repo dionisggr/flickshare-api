@@ -74,7 +74,6 @@ Each endpoint manipulates information of general and user lists.
 Each endpoint manipulates information related to movie data.
 - [Get All Movies](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies`
 - [Add Movie to Database](https://github.com/dionisggr/flickshare-api/wiki/Movies): `POST /api/movies`
-
 - [Get Movie](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies/:movie`
 
 #### Movie-List related
@@ -86,15 +85,12 @@ Each endpoint manipulates information related to the movies in lists.
 #### Access / Token related
 Each endpoint manipulates information related access / token management.
 - [Login](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `POST /api/login`
-
 - [Register](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
-
 - [Refresh JWT Token](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `PATCH /api/token`
 
 #### Admin related
 Each endpoint manipulates information related to all data, only able to be accessed by an Admin user. __Admins can manipulate all previous endpoints as well.__
 - [Get All Users](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users`
-
 - [Get All Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists`
 
 ---
