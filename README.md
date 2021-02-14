@@ -64,11 +64,9 @@ Each endpoint manipulates information related to users.
 
 #### List related
 Each endpoint manipulates information of general and user lists.
-- [Create List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `POST /api/lists`
-
 - [Get Main Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists/main` \
 *(General suggestion/category lists not associated to users)*
-
+- [Create List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `POST /api/lists`
 - [Get List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists/:list`
 - [Edit List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `PATCH /api/lists/:list`
 - [Delete List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `DELETE /api/lists/:list`
