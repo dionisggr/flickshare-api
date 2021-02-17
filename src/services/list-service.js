@@ -1,13 +1,13 @@
 const ListService = {
-  getMain(db) {
-    return db('lists')
-      .select('*')
-      .where({ user_id: null });
-  }
-  ,
   getAll(db) {
     return db('lists')
       .select('*');
+  }
+  ,
+  getMainLists(db) {
+    return db('lists')
+      .select('*')
+      .where({ user_id: null })
   }
   ,
   getAllUserLists(db, user_id) {
@@ -19,7 +19,8 @@ const ListService = {
   findByID(db, list_id) {
     return db('lists')
       .select('*')
-      .where({ list_id });
+      .where({ list_id })
+      .first();
   }
   ,
   create(db, list) {
@@ -43,8 +44,6 @@ const ListService = {
       .where({ list_id })
       .del();
   }
-  ,
-  
 };
 
 module.exports = ListService;

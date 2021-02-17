@@ -4,16 +4,36 @@ const MovieService = {
       .select('*');
   }
   ,
-  getListMovies(db, list_id) {
-    return db('list_movies')
-      .select('movie_id')
-      .where({ list_id });
+  getListMovies(db, find) {
+      if (typeof find === 'number') {
+        return db('list_movies')
+        .join('movies', { 'movies.movie_id': 'list_movies.movie_id'})
+        .select('*')
+        .where({ list_id: find });
+      } else {
+        return db('list_movies')
+        .join('movies', { 'movies.movie_id': 'list_movies.movie_id'})
+        .select('*')
+        .whereIn('list_id', [...find]);
+      }
   }
   ,
-  findByID(db, movie_id) {
+  findByID(db, find) {
+    if (typeof find === 'number') {
+      return db('movies')
+      .select('*')
+      .where({ movie_id: find });
+    } else {
+      return db('movies')
+      .select('*')
+      .whereIn('movie_id', [...find]);
+    }
+  }
+  ,
+  findByTMDB_ID(db, tmdb_ids) {
     return db('movies')
       .select('*')
-      .where({ movie_id });
+      .whereIn('tmdb_id', [...tmdb_ids])
   }
   ,
   add(db, movie) {
@@ -55,6 +75,24 @@ const MovieService = {
   addMovieGenres(db, genres) {
     return db('movie_genres')
       .insert(genres)
+  }
+  ,
+  addToDatabaseIfNotExists(db, movies) {
+    return db('movies')
+      .insert(movies)
+      .onConflict('tmdb_id')
+      .ignore();
+  }
+  ,
+  linkMovies(db, movies) {
+    return db('list_movies')
+      .insert(movies);
+  }
+  ,
+  unlinkMovies(db, list_id) {
+    return db('list_movies')
+      .where({ list_id })
+      .del();
   }
 };
 
