@@ -15,8 +15,9 @@ const UserService = {
   ,
   findByID(db, user_id) {
     return db('users')
-    .where({ user_id })
-    .select('user_id', 'first_name', 'last_name', 'email', 'admin')
+      .select('user_id', 'username', 'first_name', 'last_name', 'email', 'admin')
+      .where({ user_id })
+      .first();
   }
   ,
   getAll(db) {

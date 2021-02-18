@@ -46,6 +46,21 @@ UserRouter.route('/')
     validation.authentication(req, res, next);
   })
 
+UserRouter.route('/username')
+  .post(async (req, res, next) => {
+    const db = req.app.get('db');
+    const { username } = req.body;
+
+    console.log('USERNAME', username)
+
+    const user = await UserService.getUsernameData(db, username)
+      .catch(next);
+    
+    const response = (user) ? user.username : null;
+    
+    return res.json(response);
+  })
+
 UserRouter.route('/:user')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
@@ -68,14 +83,12 @@ UserRouter.route('/:user')
       return next('Unauthorized access');
     };
 
-    const {
-      first_name, last_name, admin,
-      username, password, email
-    } = req.body;
+    const { first_name, last_name, username, email } = req.body;
+
+    console.log(req.body)
 
     const newValues = Security.applyXSS({
-      first_name, last_name, admin,
-      username, password, email
+      first_name, last_name, username, email
     });
 
     for (const [key, value] of Object.entries(newValues)) {
