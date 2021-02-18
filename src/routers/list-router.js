@@ -161,5 +161,22 @@ ListRouter.route('/:list')
     
     return res.status(301).end();
   })
+
+  ListRouter.route('/users/:user')
+  .get(async (req, res, next) => {
+    const db = req.app.get('db');
+    const user_id = parseInt(req.params.user);
+
+    if (user_id !== req.user_id && !req.admin) {
+      return next('Unauthorized access');
+    };
+    
+    const lists = await ListService.getAllUserLists(db, user_id)
+      .catch(next);
+    
+    const response = await ResponseService.prepareMovieLists(db, lists);
+
+    return res.json(response);
+  })
   
 module.exports = ListRouter;
