@@ -29,7 +29,7 @@ ListRouter.route('/')
   })
   .post(async (req, res, next) => {
     const db = req.app.get('db');
-    const { name, user_id, movies } = req.body;
+    const { name, user_id, suggestion, movies } = req.body;
     const tmdb_ids = movies.map(movie => movie.tmdb_id);
 
     if (user_id !== req.user_id && !req.admin) {
@@ -38,7 +38,7 @@ ListRouter.route('/')
 
     if (!name) next('Missing data.');
 
-    const list = Security.applyXSS({ name });
+    const list = Security.applyXSS({ name, suggestion });
 
     if (user_id) {
       await UserService.findByID(db, user_id)
@@ -162,7 +162,7 @@ ListRouter.route('/:list')
     return res.status(301).end();
   })
 
-  ListRouter.route('/users/:user')
+ListRouter.route('/users/:user')
   .get(async (req, res, next) => {
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
@@ -172,6 +172,23 @@ ListRouter.route('/:list')
     };
     
     const lists = await ListService.getAllUserLists(db, user_id)
+      .catch(next);
+    
+    const response = await ResponseService.prepareMovieLists(db, lists);
+
+    return res.json(response);
+  })
+
+ListRouter.route('/suggestions/users/:user')
+  .get(async (req, res, next) => {
+    const db = req.app.get('db');
+    const user_id = parseInt(req.params.user);
+
+    if (user_id !== req.user_id && !req.admin) {
+      return next('Unauthorized access');
+    };
+    
+    const lists = await ListService.getAllUserSuggestions(db, user_id)
       .catch(next);
     
     const response = await ResponseService.prepareMovieLists(db, lists);

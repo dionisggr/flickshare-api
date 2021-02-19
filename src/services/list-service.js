@@ -13,7 +13,13 @@ const ListService = {
   getAllUserLists(db, user_id) {
     return db('lists')
       .select('*')
-      .where({ user_id });
+      .where({ user_id, suggestion: false });
+  }
+  ,
+  getAllUserSuggestions(db, user_id) {
+    return db('lists')
+      .select('*')
+      .where({ user_id, suggestion: true })
   }
   ,
   findByID(db, list_id) {

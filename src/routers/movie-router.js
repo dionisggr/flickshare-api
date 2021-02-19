@@ -82,34 +82,14 @@ MovieRouter.route('/lists/:list')
   .post(async (req, res, next) => {
     const db = req.app.get('db');
     const list_id = parseInt(req.params.list);
-    const {
-      title: name, genre_ids,
-      id: tmdb_id, overview: description,
-      vote_average: avg_vote, poster_path: poster,
-      release_date, popularity, vote_count
-    } = req.body;
-
-    const movie = Security.applyXSS({
-      name, tmdb_id, poster,
-      description, avg_vote,
-      release_date, popularity,
-      vote_count
-    });
+    const movie = Security.applyXSS(req.body.movie);
 
     try {
-      let foundMovie = await MovieService.existsInDatabase(db, tmdb_id);
-
-      if (!foundMovie) {
-        movie.genres = genre_ids.map(genre_id => {
-          return { genre_id, movie_id };
-        });
-
-        foundMovie = await MovieService.add(db, movie);
-      };
+      let foundMovie = await MovieService.existsInDatabase(db, movie.tmdb_id);
 
       const { movie_id } = foundMovie;
 
-      const listMovie = Security.applyXSS({ movie_id, list_id });
+      const listMovie = { movie_id, list_id };
       
       const newMovie = await MovieService.addToList(db, listMovie);
       

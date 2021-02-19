@@ -1,6 +1,6 @@
 BEGIN;
 
-TRUNCATE list_movies, movie_genres, genres, movies, lists, users RESTART IDENTITY CASCADE;
+TRUNCATE list_movies, movies, lists, users RESTART IDENTITY CASCADE;
 
 INSERT INTO users
   (username, first_name, last_name, email, password, admin)
@@ -12,22 +12,22 @@ VALUES
   ('username 5', 'First 5', 'Last 5', 'email 5', 'password 5', FALSE);
 
 INSERT INTO lists
-  (name)
+  (name, suggestion)
 VALUES
-  ('List 1'),
-  ('List 2'),
-  ('List 3'),
-  ('List 4'),
-  ('List 5');
+  ('List 1', FALSE),
+  ('List 2', FALSE),
+  ('List 3', FALSE),
+  ('List 4', FALSE),
+  ('List 5', FALSE);
 
 INSERT INTO lists
-  (name, user_id)
+  (name, user_id, suggestion)
 VALUES
-  ('List 6', 1),
-  ('List 7', 1),
-  ('List 8', 2),
-  ('List 9', 3),
-  ('List 10', 4);
+  ('List 6', 1, FALSE),
+  ('List 7', 1, FALSE),
+  ('List 8', 2, FALSE),
+  ('List 9', 3, FALSE),
+  ('List 10', 4, FALSE);
 
 INSERT INTO movies
   (name, tmdb_id, release_date, popularity, avg_vote, vote_count, poster, description)
@@ -37,32 +37,6 @@ VALUES
   ('Finding Ohana', 644092, '2021-01-29', 950.433, 6.9, 102, 'https://image.tmdb.org/t/p/original/tTWl37oAYRXS3D5mEHmjveXXyrN.jpg', 'Two Brooklyn siblings'' summer in a rural Oahu town takes an exciting turn when a journal pointing to long-lost treasure sets them on an adventure, leading them to reconnect with their Hawaiian heritage.'),
   ('Ashfall', 581387, '2019-12-19', 791.217, 6.7, 183, 'https://image.tmdb.org/t/p/original/zoeKREZ2IdAUnXISYCS0E6H5BVh.jpg', 'Stagnant since 1903, at an elevation of 9000", a volcano erupts on the mythical and majestic Baekdu Mountain.'),
   ('Batman: Soul of the Dragon', 732450, '2021-01-12', 406.89, 7.2, 83, 'https://image.tmdb.org/t/p/original/uDhnTtSxU5a8DtZdbbin3aZmkmU.jpg', 'Bruce Wayne faces a deadly menace from his past, with the help of three former classmates: world-renowned martial artists Richard Dragon, Ben Turner and Lady Shiva.');
-
-INSERT INTO genres
-  (genre_id, name)
-VALUES
-  (1, 'Genre 1'),
-  (2, 'Genre 2'),
-  (3, 'Genre 3'),
-  (4, 'Genre 4'),
-  (5, 'Genre 5'),
-  (6, 'Genre 6'),
-  (7, 'Genre 7'),
-  (8, 'Genre 8'),
-  (9, 'Genre 9');
-
-INSERT INTO movie_genres
-  (genre_id, movie_id)
-VALUES
-  (1, 1),
-  (1, 2),
-  (2, 1),
-  (2, 3),
-  (3, 2),
-  (3, 4),
-  (4, 3),
-  (4, 5),
-  (5, 4);
 
 INSERT INTO list_movies
   (list_id, movie_id)
