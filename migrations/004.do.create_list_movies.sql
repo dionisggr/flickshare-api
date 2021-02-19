@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS list_movies (
-  list_id INTEGER REFERENCES lists(list_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  movie_id INTEGER REFERENCES movies(movie_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  UNIQUE (list_id, movie_id)
-);
