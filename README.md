@@ -1,7 +1,7 @@
 # Flickshare API
 A simple API stop for the Flickshare App for all HTTP-related requests.
 
-The app allows users to create an account, created ordered lists of movie interests and receive suggestions based on these, and if connected, your friends lists.
+The Flickshare App is directed for anyone who really has a hard time finding suggestions on what to watch next! The app allows users to create an account and custom lists of movie interests, which may then be used to generated a list of suggestions and store them for coming back to it later.
 
 More info can be found at the [client repo](https://github.com/dionisggr/flickshare-client).
 
