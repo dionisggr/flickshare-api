@@ -13,6 +13,15 @@ const UserService = {
       .first();
   }
   ,
+  changePassword(db, user_id, password) {
+    return db('users')
+    .select('*')
+    .update({ password })
+    .where({ user_id })
+    .returning('*')
+    .then(rows => rows[0])
+  }
+  ,
   findByID(db, user_id) {
     return db('users')
       .select('user_id', 'username', 'first_name', 'last_name', 'email', 'admin')
