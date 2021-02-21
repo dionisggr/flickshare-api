@@ -5,14 +5,14 @@ This API stop represents a way for the app to communicate with the list of users
 
 ---
 
-### API URL:
-https://cryptic-badlands-24275.herokuapp.com/ (Landing)
-
-### Client Live
+### Client Live:
 https://flickshare-client.vercel.app/
 
-### Client GitHub:
-https://github.com/dionisggr/flickshare-client/
+### API URL
+https://cryptic-badlands-24275.herokuapp.com/
+
+### API GitHub:
+https://github.com/dionisggr/flickshare-api/
 
 ---
 
@@ -21,26 +21,23 @@ https://github.com/dionisggr/flickshare-client/
   - I am landed in the Welcome Page
   - I can see the week's top movie suggestions per category
   - I can navigate to the Register and Login pages
+  - I can see more information about a movie
 - As a registered user
   - I can create and name a list
   - I can search for a movie to select for a list
   - I can search, edit and delete my list
-  - I can browse my friends' top public lists
-  - I can send friends movie suggestions
-  - I can like movies in lists
-  - I can dislike movie suggestions directed to me
-  - I can select a movie to learn more details about it
+  - I can browse top public lists
+  - I can see more information about a movie
 - As an Admin
   - I can see, edit and delete users
-  - I can see, edit and delete movies
+  - I can see and add movies
   - I can see, edit and delete lists
-  - I can reset likes in movies
-  - I can reset suggestion algorithms for users
+  - I can reset user suggestion lists
 
 ---
 
 ### Technology
-* **Front-End:** React.js, Javascript, CSS3, Mocha, Chai, API fetch
+* **Front-End:** 
 * **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
 * **Development Environment:** Heroku, DBeaver, Postman
 
@@ -73,11 +70,10 @@ The app's functionality includes:
       * __Register.js__ - (stateless)
       * __Login.js__ - (stateless)
       * __WelcomePage.js__ - (stateful)
-      * __Login.js__ - (stateful)
-      * __Register.js__ - (stateful)
+          * __Login.js__ - (stateful)
+          * __Register.js__ - (stateful)
       * __Lists.js__ - (stateful)
-        * __List.js__ - (stateful)
-          * __ListPreview.js__ - (stateful)
+      * __List.js__ - (stateful)
       * __Suggestions.js__ - (stateful)
       * __Movie.js__ - (stateful)
         * __MoviePreview.js__ - (stateful)
