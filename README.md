@@ -6,7 +6,7 @@ This API stop represents a way for the app to communicate with the list of users
 ---
 
 ### API URL:
-*(Pending)*
+https://cryptic-badlands-24275.herokuapp.com/ - (Landing)
 
 ### Client Live
 *(Pending)*
