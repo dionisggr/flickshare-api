@@ -14,11 +14,10 @@ MovieRouter.route('/')
     
     return res.json(movies);
   })
-  .post(async (req, res, next) => {
+  .post(async (req, res) => {
     const db = req.app.get('db');
     const {
-      title: name, genre_ids,
-      id: tmdb_id, overview: description,
+      title: name, id: tmdb_id, overview: description,
       vote_average: avg_vote, poster_path: poster,
       release_date, popularity, vote_count
     } = req.body;
@@ -30,18 +29,11 @@ MovieRouter.route('/')
       vote_count
     });
 
-    try {
-      const newMovie = await MovieService.add(db, movie);
-      const { movie_id } = newMovie;
+    const newMovie = await MovieService.add(db, movie);
 
-      const genres = genre_ids.map(genre_id => {
-        return { genre_id, movie_id };
-      });
+    console.log(newMovie);
 
-      await MovieService.addMovieGenres(db, genres);
-
-      return res.status(201).json(newMovie);
-    } catch (error) { return next(error) };
+    return res.status(201).json(newMovie);
 
   });
 

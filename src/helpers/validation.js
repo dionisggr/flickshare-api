@@ -32,7 +32,7 @@ const validation = {
   authentication: async (req, res, next) => {
     const db = req.app.get('db');
     const { username, password } = req.body;
-    
+
     try {
       const payload = await UserService.getUsernameData(db, username);
       // Returns 'user_id' and 'admin' boolean
