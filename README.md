@@ -1,4 +1,4 @@
-# Flickshare API
+# Flickshare App
 The Flickshare App is directed for anyone who really has a hard time finding suggestions on what to watch next! The app allows users to create an account and custom lists of movie interests, which may then be used to generated a list of suggestions and store them for coming back to it later.
 
 This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user.
@@ -119,7 +119,7 @@ If sending content through request body (`POST`), don't forget to add the follow
 headers" {'Content-Type': 'application/json'}
 ```
 
-#### User related
+### User related
 Each endpoint manipulates information related to users.
 - [Create User (Register)](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
 - [Get User](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users/:user`
