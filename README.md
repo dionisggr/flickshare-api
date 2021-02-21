@@ -1,32 +1,62 @@
 # Flickshare API
-A simple API stop for the Flickshare App for all HTTP-related requests.
-
 The Flickshare App is directed for anyone who really has a hard time finding suggestions on what to watch next! The app allows users to create an account and custom lists of movie interests, which may then be used to generated a list of suggestions and store them for coming back to it later.
 
-More info can be found at the [client repo](https://github.com/dionisggr/flickshare-client).
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user. The movie data contains properties from its original TMDB (The Movie Database) JSON object. Properties in the app include its TMDB ID, description, release date, popularity score, poster image URL, vote count and average vote.
-
-### API URL:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://cryptic-badlands-24275.herokuapp.com/ *(Landing Page)*
-
-### Client Live
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *(Pending)*
-
-### Client GitHub:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://github.com/dionisggr/flickshare-client/
-
-### Deployment Platform:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Heroku
-
-### Languages/Tools
-- **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, HTML5, CI scripts
-- **Loggers:** Morgan
-- **Securities:** XSS, CORS, Helmet
+This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user.
 
 ---
 
-## Back-End Structure
+### API URL:
+https://cryptic-badlands-24275.herokuapp.com/ *(Landing Page)*
+
+### Client Live
+*(Pending)*
+
+### Client GitHub:
+https://github.com/dionisggr/flickshare-client/
+
+---
+
+### User Stories
+- As a prospective user
+  - I am landed in the Welcome Page
+  - I can see the week's top movie suggestions per category
+  - I can navigate to the Register and Login pages
+- As a registered user
+  - I can create and name a list
+  - I can search for a movie to select for a list
+  - I can search, edit and delete my list
+  - I can browse my friends' top public lists
+  - I can send friends movie suggestions
+  - I can like movies in lists
+  - I can dislike movie suggestions directed to me
+  - I can select a movie to learn more details about it
+- As an Admin
+  - I can see, edit and delete users
+  - I can see, edit and delete movies
+  - I can see, edit and delete lists
+  - I can reset likes in movies
+  - I can reset suggestion algorithms for users
+
+---
+
+### Technology
+* **Front-End:** 
+* **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
+* **Development Environment:** Heroku, DBeaver, Postman
+
+---
+
+### Functionality
+
+
+---
+
+### Front-End Structure
+
+
+---
+
+### Back-End Structure
 - Users (database table)
   - user_id (integer, auto-generated)
   - first_name (text, not null)
@@ -61,7 +91,7 @@ More info can be found at the [client repo](https://github.com/dionisggr/flicksh
 
 ---
 
-## API Instructions
+## API Documentation
 
 ### Endpoints that require Authentication
 Closed endpoints that require a valid username and password to be included in the header body of the request.
@@ -123,10 +153,118 @@ Each endpoint manipulates information related access / token management.
 - [Register](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
 - [Refresh JWT Token](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `PATCH /api/token`
 
+
+
+##### Login
+**URL:** `/api/login` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+
+####### Request Body
+```
+{
+  "username": "admin",
+  "password": "password",
+}
+```
+
+| Name       | Type    | In     | Description       |
+| -----------| ------- | ------ | ----------------- |
+| `username` | string  | header | Unique username   |
+| `password` | string  | header | User password     |
+
+## Success Response
+**Code:** `200 OK` \
+**Content example**
+```
+{
+  "flickshareToken": &lt;JSON Web Token&gt;
+}
+```
+
+---
+
+# Refresh Token
+**URL:** `/api/token` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer <JSON Web Token>`
+
+## Success Response
+**Code:** `200 OK` \
+**Content example**
+```
+{
+  "flickshareToken": &lt;JSON Web Token&gt;
+}
+```
+
+---
+
+# Registration
+**URL:** `/api/users` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+## Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  "username": "rhoward",
+  "password": "password",
+  "first_name": "Ryan",
+  "last_name": "Howard",
+  "email": "commited@wuphf.com",
+  "admin": false
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | --------------------- |
+| `username`      | string  | header | Unique username       |
+| `password`      | string  | header | User password         |
+| `first_name`    | string  | header | First name of user    |
+| `last_name`     | string  | header | Last name of user     |
+| `email`         | string  | header | User email            |
+| `admin`         | string  | header | Admin privileges      |
+
+## Success Response
+**Code:** `201 Created` \
+**Content example**
+```
+[
+  {
+    "user_id": "4"
+    "username": "rhoward",
+    "first_name": "Ryan",
+    "last_name": "Howard",
+    "email": "commited@wuphf.com",
+    "admin": false
+  },
+  
+  ...
+]
+```
+
+
+
+
+
+
 #### Admin related
 Each endpoint manipulates information related to all data, only able to be accessed by an Admin user. __Admins can manipulate all previous endpoints as well.__
 - [Get All Users](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users`
 - [Get All Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists`
+
+---
+
+### Screenshots
+
+![Landing Page](https://github.com/dionisggr/flickshare-api/blob/main/public/img/landing.png)
 
 ---
 
@@ -184,7 +322,3 @@ timezone = 'UTC'
 ```
 
 ---
-
-## Landing Page
-
-![Landing Page](https://github.com/dionisggr/flickshare-api/blob/main/public/img/landing.png)
