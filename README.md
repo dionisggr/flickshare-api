@@ -3,7 +3,6 @@ The Flickshare App is directed for anyone who really has a hard time finding sug
 
 This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user.
 
----
 
 ### API URL:
 *(Pending)*
@@ -14,7 +13,6 @@ This API stop represents a way for the app to communicate with the list of users
 ### Client GitHub:
 https://github.com/dionisggr/flickshare-client/
 
----
 
 ### User Stories
 - As a prospective user
@@ -37,14 +35,12 @@ https://github.com/dionisggr/flickshare-client/
   - I can reset likes in movies
   - I can reset suggestion algorithms for users
 
----
 
 ### Technology
 * **Front-End:** 
 * **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
 * **Development Environment:** Heroku, DBeaver, Postman
 
----
 
 ### Functionality
 The app's functionality includes:
@@ -62,7 +58,7 @@ The app's functionality includes:
     * May create, edit and delete any user
   * May see a list of all lists
     * May create, edit and delete any list
----
+
 
 ### Front-End Structure
 * __Index.js__ - (stateless)
@@ -90,7 +86,6 @@ The app's functionality includes:
       * __ErrorBoundary.js__ - (stateful)
       * __Footer.js__ - (stateless)
 
----
 
 ### Back-End Structure
 - Users (database table)
@@ -119,7 +114,6 @@ The app's functionality includes:
   - list_id (references lists.list_id)
   - movie_id (references movies.movie_id)
 
----
 
 ## API Documentation
 
@@ -179,7 +173,6 @@ Each endpoint manipulates information related to users.
 ]
 ```
 
----
 
 #### Create User *(Register)*
 **URL:** `/api/users` \
@@ -224,7 +217,6 @@ Each endpoint manipulates information related to users.
 }
 ```
 
----
 
 #### Edit User
 **URL:** `/users/:userID` \
@@ -271,7 +263,6 @@ Each endpoint manipulates information related to users.
 ##### Notes
 All values will be necessary in Update due to previous empty field validation
 
----
 
 #### Delete User
 **URL:** `/users/:user` \
@@ -337,7 +328,6 @@ Each endpoint manipulates information related to movie data.
 ]
 ```
 
----
 
 #### Get Movie
 **URL:** `/api/movies/:movie` \
@@ -368,7 +358,6 @@ Each endpoint manipulates information related to movie data.
 ]
 ```
 
----
 
 #### Add Movie to Database
 **URL:** `/api/movies` \
@@ -420,7 +409,6 @@ Each endpoint manipulates information related to movie data.
 }
 ```
 
----
 
 #### Add Movie to List
 **URL:** `/api/movies/lists/:list` \
@@ -448,7 +436,6 @@ Each endpoint manipulates information related to movie data.
 
 &lt;*No Content*&gt;
 
----
 
 #### Delete Movie
 **URL:** `/api/movies/:movie` \
@@ -466,7 +453,6 @@ Each endpoint manipulates information related to movie data.
 
 &lt;*No Content*&gt;
 
----
 
 #### Delete List Movie
 **URL:** `/api/movies/:movie/lists/:list` \
@@ -523,7 +509,6 @@ Each endpoint manipulates information related to the movies in lists.
 ]
 ```
 
----
 
 #### Get Main Lists
 **URL:** `/api/lists/main` \
@@ -555,7 +540,6 @@ Each endpoint manipulates information related to the movies in lists.
 ]
 ```
 
----
 
 #### Create List
 **URL:** `/api/lists` \
@@ -589,7 +573,6 @@ Each endpoint manipulates information related to the movies in lists.
 }
 ```
 
----
 
 #### Edit List
 **URL:** `/api/lists/:list` \
@@ -624,7 +607,6 @@ Each endpoint manipulates information related to the movies in lists.
 ##### Notes
 All values will be necessary in Update due to previous empty field validation
 
----
 
 #### Delete List
 **URL:** `/api/lists/:list` \
@@ -680,7 +662,6 @@ Each endpoint manipulates information related access / token management.
 }
 ```
 
----
 
 #### Refresh Token
 **URL:** `/api/token` \
@@ -697,7 +678,6 @@ Each endpoint manipulates information related access / token management.
 }
 ```
 
----
 
 #### Registration
 **URL:** `/api/users` \
@@ -751,13 +731,11 @@ Each endpoint manipulates information related to all data, only able to be acces
 - [Get All Users](https://github.com/dionisggr/flickshare-api/wiki/Users): `GET /api/users`
 - [Get All Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists`
 
----
 
 ### Screenshots
 
 ![Landing Page](https://github.com/dionisggr/flickshare-api/blob/main/public/img/landing.png)
 
----
 
 ## Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
@@ -766,7 +744,6 @@ This is v1.0 of the app, but future enhancements are expected to include:
 - Sending movie-list suggestions
 - Copy other user's lists
 
----
 
 ## Local Dev Set Up
 Start a database server with `pg_ctl start`.
