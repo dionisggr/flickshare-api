@@ -51,8 +51,6 @@ UserRouter.route('/username')
     const db = req.app.get('db');
     const { username } = req.body;
 
-    console.log('USERNAME', username)
-
     const user = await UserService.getUsernameData(db, username)
       .catch(next);
     
@@ -84,8 +82,6 @@ UserRouter.route('/:user')
     };
 
     const { first_name, last_name, username, email } = req.body;
-
-    console.log(req.body)
 
     const newValues = Security.applyXSS({
       first_name, last_name, username, email
