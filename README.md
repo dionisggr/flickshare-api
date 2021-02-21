@@ -40,7 +40,7 @@ https://github.com/dionisggr/flickshare-client/
 ---
 
 ### Technology
-* **Front-End:** 
+* **Front-End:** React.js, Javascript, CSS3, Mocha, Chai, API fetch
 * **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
 * **Development Environment:** Heroku, DBeaver, Postman
 
