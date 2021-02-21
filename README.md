@@ -6,10 +6,10 @@ This API stop represents a way for the app to communicate with the list of users
 ---
 
 ### API URL:
-https://cryptic-badlands-24275.herokuapp.com/ - (Landing)
+https://cryptic-badlands-24275.herokuapp.com/ (Landing)
 
 ### Client Live
-*(Pending)*
+https://flickshare-client.vercel.app/
 
 ### Client GitHub:
 https://github.com/dionisggr/flickshare-client/
@@ -73,10 +73,11 @@ The app's functionality includes:
       * __Register.js__ - (stateless)
       * __Login.js__ - (stateless)
       * __WelcomePage.js__ - (stateful)
-          * __Login.js__ - (stateful)
-          * __Register.js__ - (stateful)
+      * __Login.js__ - (stateful)
+      * __Register.js__ - (stateful)
       * __Lists.js__ - (stateful)
-      * __List.js__ - (stateful)
+        * __List.js__ - (stateful)
+          * __ListPreview.js__ - (stateful)
       * __Suggestions.js__ - (stateful)
       * __Movie.js__ - (stateful)
         * __MoviePreview.js__ - (stateful)
