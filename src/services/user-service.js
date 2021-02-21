@@ -22,7 +22,7 @@ const UserService = {
   ,
   getAll(db) {
     return db('users')
-    .select('user_id', 'first_name', 'last_name', 'email', 'admin')
+    .select('user_id', 'username', 'first_name', 'last_name', 'email', 'admin')
   }
   ,
   create(db, user) {
