@@ -126,7 +126,143 @@ Each endpoint manipulates information related to users.
 - [Edit User](https://github.com/dionisggr/flickshare-api/wiki/Users): `PATCH /api/users/:user`
 - [Delete User](https://github.com/dionisggr/flickshare-api/wiki/Users): `DELETE /api/users/:user`
 
-#### List related
+#### Get Users
+**URL:** `/api/users` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer my-secret-admin`
+
+##### Success Response
+**Code:** `200 OK` \
+**Content example**
+```
+[
+  {
+    "username": "dschrute",
+    "first_name": "Dwight",
+    "last_name": "Schrute",
+    "email": "schrutefarms@creedmail.com",
+    "admin": false
+  },
+      
+  ...
+]
+```
+
+---
+
+#### Create User *(Register)*
+**URL:** `/api/users` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+  {
+  "username": "rhoward",
+  "password": "password",
+  "first_name": "Ryan",
+  "last_name": "Howard",
+  "email": "commited@wuphf.com",
+  "admin": false
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | ------------------------- |
+| `username`      | string  | header | Unique username           |
+| `password`      | string  | header | User password             |
+| `first_name`    | string  | header | First name of user        |
+| `last_name`     | string  | header | Last name of user         |
+| `email`         | string  | header | User email                |
+| `admin`         | boolean | header | Admin privileges          |
+
+##### Success Reponse
+**Code:** `201 Created` \
+**Content example**
+```
+{
+  "user_id": 4
+  "username": "rhoward",
+  "first_name": "Ryan",
+  "last_name": "Howard",
+  "email": "commited@wuphf.com",
+  "admin": false
+}
+```
+
+---
+
+#### Edit User
+**URL:** `/users/:userID` \
+**Method:** `PATCH` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  // All optional, at least one required.
+  "username": "rhoward",
+  "first_name": "Ryan",
+  "last_name": "Kapoor", // Edited
+  "email": "taken@wuphf.com", // Edited
+  "admin": false
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | ------------------------- |
+| `user`          | integer | path   | User ID                   |
+| `username`      | string  | header | Unique username           |
+| `first_name`    | string  | header | First name of user        |
+| `last_name`     | string  | header | Last name of user         |
+| `email`         | string  | header | User email                |
+| `admin`         | boolean | header | Admin privileges          |
+
+##### Success Reponse
+**Code:** `201 Created` *(Resource updated successfully, and refreshes.)* \
+**Content example**
+```
+{
+  "user_id": 4
+  "username": "rhoward",
+  "first_name": "Ryan",
+  "last_name": "Kapoor",
+  "email": "taken@wuphf.com",
+  "admin": false
+}
+```
+##### Notes
+All values will be necessary in Update due to previous empty field validation
+
+---
+
+#### Delete User
+**URL:** `/users/:user` \
+**Method:** `DELETE` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>` *(Generated at Login. See above for instructions)*
+
+| Name            | Type    | In     | Description      |
+| ----------------| ------- | ------ | ---------------- |
+| `user`          | integer | path   | User ID          |
+
+##### Success Reponse
+**Code:** `301 Moved Permanently` \
+**Content example**
+
+&lt;*No Content*&gt;
+
+
+### List related
 Each endpoint manipulates information of general and user lists.
 - [Get Main Lists](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `GET /api/lists/main` \
 *(General suggestion/category lists not associated to users)*
@@ -135,27 +271,357 @@ Each endpoint manipulates information of general and user lists.
 - [Edit List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `PATCH /api/lists/:list`
 - [Delete List](https://github.com/dionisggr/flickshare-api/wiki/Movie-Lists): `DELETE /api/lists/:list`
 
-#### Movie related
+
+### Movie related
 Each endpoint manipulates information related to movie data.
 - [Get All Movies](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies`
 - [Add Movie to Database](https://github.com/dionisggr/flickshare-api/wiki/Movies): `POST /api/movies`
 - [Get Movie](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies/:movie`
 
-#### Movie-List related
+#### Get All Movies
+**URL:** `/api/movies` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Success Reponse
+**Code:** `200 OK` \
+**Content example**
+```
+[
+  {
+    "movie_id": 1,
+    "name": "Man of Steel",
+    "description": "Come on, it's Man of Steel.",
+    "tmdb_id": 99999,
+    "releaste_date": 2013,
+    "popularity": 987.72
+    "avg_vote": 7.4,
+    "vote_count": 9,876
+    "poster": "https://image.tmdb.org/t/p/original/manofsteel.jpg",
+  },
+      
+  ...
+]
+```
+
+---
+
+#### Get Movie
+**URL:** `/api/movies/:movie` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Success Reponse
+**Code:** `200 OK` \
+**Content example**
+```
+[
+  {
+    "movie_id": 1,
+    "name": "Man of Steel",
+    "description": "Come on, it's Man of Steel.",
+    "tmdb_id": 99999,
+    "releaste_date": 2013,
+    "popularity": 987.72
+    "avg_vote": 7.4,
+    "vote_count": 9,876
+    "poster": "https://image.tmdb.org/t/p/original/manofsteel.jpg",
+  },
+      
+  ...
+]
+```
+
+---
+
+#### Add Movie to Database
+**URL:** `/api/movies` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  "name": "The Dark Knight",
+  "description": "No description necessary.",
+  "tmdb_id": 99998,
+  "release_date": 2008,
+  "popularity": 985.27
+  "avg_vote": 6.9,
+  "vote_count": 8,517
+  "poster": "https://image.tmdb.org/t/p/original/thedarkknight.jpg"
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | ------------------------- |
+| `name`          | string  | header | Name of project           |
+| `description`   | string  | header | Description of project    |
+| `tmdb_id`       | string  | header | Languages/Tools required  |
+| `release_date`  | string  | header | Project Phase             |
+| `popularity`    | string  | header | Project Phase status      |
+| `avg_vote`      | string  | header | Creator of project        |
+| `vote_count`    | string  | header | Date created              |
+| `poster`        | boolean | header | Accepts collaboration     |
+
+##### Success Reponse
+**Code:** `201 Created` \
+**Content example**
+```
+{
+  "movie_id": 2,
+  "name": "The Dark Knight",
+  "description": "No description necessary.",
+  "tmdb_id": 99998,
+  "releaste_date": 2008,
+  "popularity": 985.27
+  "avg_vote": 6.9,
+  "vote_count": 8,517
+  "poster": "https://image.tmdb.org/t/p/original/thedarkknight.jpg"
+}
+```
+
+---
+
+#### Add Movie to List
+**URL:** `/api/movies/lists/:list` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  "movie_id": 1
+}
+```
+| Name            | Type    | In     | Description         |
+| ----------------| ------- | ------ | ------------------- |
+| `list`          | integer | path   | List ID             |
+| `movie_id`      | integer | header | Movie ID            |
+
+##### Success Reponse
+**Code:** `201 Created` \
+**Content example**
+
+&lt;*No Content*&gt;
+
+---
+
+#### Delete Movie
+**URL:** `/api/movies/:movie` \
+**Method:** `DELETE` \
+**Auth required:** Yes
+- `Bearer my-secret-admin`
+
+| Name            | Type    | In     | Description       |
+| ----------------| ------- | ------ | ----------------- |
+| `movie`         | integer | path   | Movie ID          |
+
+##### Success Reponse
+**Code:** `301 Moved Permanently` \
+**Content example**
+
+&lt;*No Content*&gt;
+
+---
+
+#### Delete List Movie
+**URL:** `/api/movies/:movie/lists/:list` \
+**Method:** `DELETE` \
+**Auth required:** Yes
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+| Name            | Type    | In     | Description       |
+| ----------------| ------- | ------ | ----------------- |
+| `movie`         | integer | path   | Movie ID          |
+| `list`          | integer | path   | List ID           |
+
+##### Success Reponse
+**Code:** `301 Moved Permanently` \
+**Content example**
+
+&lt;*No Content*&gt;
+
+
+### Movie-List related
 Each endpoint manipulates information related to the movies in lists.
 - [Get List Movies](https://github.com/dionisggr/flickshare-api/wiki/Movies): `GET /api/movies/lists/:list`
 - [Add Movie to list](https://github.com/dionisggr/flickshare-api/wiki/Movies): `POST /api/movies/lists/:list`
 - [Delete Movie from list](https://github.com/dionisggr/flickshare-api/wiki/Movies): `DELETE /api/movies/:movie/lists/:list`
 
-#### Access / Token related
+#### Get All Lists
+**URL:** `/api/lists` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Success Response
+**Code:** `200 OK` \
+**Content example**
+```
+[
+    {
+    "list_id": "1",
+    "name": "Admin list",
+    "user_id": 1,
+    "movies": [...]
+  },
+  {
+    "list_id": "2",
+    "name": "Top Rated",
+    "user_id": null,
+    "movies": [...]
+  }
+      
+  ...
+]
+```
+
+---
+
+#### Get Main Lists
+**URL:** `/api/lists/main` \
+**Method:** `GET` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Success Response
+**Code:** `200 OK` \
+**Content example**
+```
+[
+    {
+    "list_id": "2",
+    "name": "Top Rated",
+    "user_id": null,
+    "movies": [...]
+  },
+  {
+    "list_id": "3",
+    "name": "Popular",
+    "user_id": null,
+    "movies": [...]
+  }
+      
+  ...
+]
+```
+
+---
+
+#### Create List
+**URL:** `/api/lists` \
+**Method:** `POST` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  "name": "New List Name",
+  "user_id": 1  // Optional
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | ------------------------- |
+| `name`          | string  | header | Name of list              |
+| `user_id`       | integer | header | Description of list       |
+
+##### Success Response
+**Code:** `201 Created` \
+**Content example**
+```
+{
+  "list_id": 3,
+  "name": "New List Name",
+  "user_id": 1
+}
+```
+
+---
+
+#### Edit List
+**URL:** `/api/lists/:list` \
+**Method:** `PATCH` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+##### Request Body
+*Requires `headers: {'Content-Type': 'application/json'}`*
+```
+{
+  "name": "New Name"
+}
+```
+| Name            | Type    | In     | Description               |
+| ----------------| ------- | ------ | ------------------------- |
+| `list`          | integer | path   | List ID                   |
+| `name`          | string  | header | Name of list              |
+
+##### Success Response
+**Code:** `201 Created` *(Resource updated successfully, and refreshes.)* \
+**Content example**
+```
+{
+  "list_id": 3,
+  "name": "New Name",
+  "user_id": 2
+}
+```
+##### Notes
+All values will be necessary in Update due to previous empty field validation
+
+---
+
+#### Delete List
+**URL:** `/api/lists/:list` \
+**Method:** `DELETE` \
+**Auth required:** Yes
+- `Bearer my-secret-key`
+- `Bearer my-secret-admin`
+- `Bearer <JSON Web Token>`
+
+| Name            | Type    | In     | Description        |
+| ----------------| ------- | ------ | ------------------ |
+| `list`          | integer | path   | LIst ID            |
+
+##### Success Response
+**Code:** `301 Moved Permanently` \
+**Content example**
+
+&lt;*No Content*&gt;
+
+
+### Access / Token related
 Each endpoint manipulates information related access / token management.
 - [Login](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `POST /api/login`
 - [Register](https://github.com/dionisggr/flickshare-api/wiki/Users): `POST /api/users`
 - [Refresh JWT Token](https://github.com/dionisggr/flickshare-api/wiki/Access-Permission): `PATCH /api/token`
 
-
-
-##### Login
+#### Login
 **URL:** `/api/login` \
 **Method:** `POST` \
 **Auth required:** Yes
@@ -175,7 +641,7 @@ Each endpoint manipulates information related access / token management.
 | `username` | string  | header | Unique username   |
 | `password` | string  | header | User password     |
 
-## Success Response
+##### Success Response
 **Code:** `200 OK` \
 **Content example**
 ```
@@ -186,13 +652,13 @@ Each endpoint manipulates information related access / token management.
 
 ---
 
-# Refresh Token
+#### Refresh Token
 **URL:** `/api/token` \
 **Method:** `GET` \
 **Auth required:** Yes
 - `Bearer <JSON Web Token>`
 
-## Success Response
+##### Success Response
 **Code:** `200 OK` \
 **Content example**
 ```
@@ -203,7 +669,7 @@ Each endpoint manipulates information related access / token management.
 
 ---
 
-# Registration
+#### Registration
 **URL:** `/api/users` \
 **Method:** `POST` \
 **Auth required:** Yes
@@ -211,7 +677,7 @@ Each endpoint manipulates information related access / token management.
 - `Bearer my-secret-admin`
 - `Bearer <JSON Web Token>`
 
-## Request Body
+##### Request Body
 *Requires `headers: {'Content-Type': 'application/json'}`*
 ```
 {
@@ -232,7 +698,7 @@ Each endpoint manipulates information related access / token management.
 | `email`         | string  | header | User email            |
 | `admin`         | string  | header | Admin privileges      |
 
-## Success Response
+##### Success Response
 **Code:** `201 Created` \
 **Content example**
 ```
@@ -249,11 +715,6 @@ Each endpoint manipulates information related access / token management.
   ...
 ]
 ```
-
-
-
-
-
 
 #### Admin related
 Each endpoint manipulates information related to all data, only able to be accessed by an Admin user. __Admins can manipulate all previous endpoints as well.__
