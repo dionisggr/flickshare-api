@@ -32,13 +32,13 @@ ListRouter.route('/')
     const { name, user_id, suggestion, movies } = req.body;
     const tmdb_ids = movies.map(movie => movie.tmdb_id);
 
-    if (user_id !== req.user_id && !req.admin) {
-      return next('Unauthorized access');
-    };
+    // if (!user_id && !req.admin) {
+    //   return next('Unauthorized access');
+    // };
 
     if (!name) next('Missing data.');
 
-    const list = Security.applyXSS({ name, suggestion });
+    const list = Security.applyXSS({ name, suggestion, user_id: null });
 
     if (user_id) {
       await UserService.findByID(db, user_id)
@@ -51,19 +51,21 @@ ListRouter.route('/')
 
     const newList = await ListService.create(db, list)
       .catch(next);
+    
+    if (movies.length > 0) {
+      await MovieService.addToDatabaseIfNotExists(db, movies);
 
-    await MovieService.addToDatabaseIfNotExists(db, movies);
+      const foundMovies = await MovieService.findByTMDB_ID(db, tmdb_ids);
 
-    const foundMovies = await MovieService.findByTMDB_ID(db, tmdb_ids);
+      const { list_id } = newList;
+  
+      const linkedMovies = foundMovies.map(movie => {
+        const { movie_id } = movie;
+        return { list_id, movie_id };
+      });
 
-    const { list_id } = newList;
-
-    const linkedMovies = foundMovies.map(movie => {
-      const { movie_id } = movie;
-      return { list_id, movie_id };
-    });
-
-    await MovieService.linkMovies(db, linkedMovies);
+      await MovieService.linkMovies(db, linkedMovies);
+    };
 
     const response = (await ResponseService.prepareMovieLists(db, [newList]))[0];
 
@@ -90,7 +92,7 @@ ListRouter.route('/:list')
     const list = await ListService.findByID(db, list_id)
       .catch(next);
     
-    if (list.user_id !== req.user_id && !req.admin) {
+    if (list.user_id && (list.user_id !== req.user_id && !req.admin)) {
       return next('Unauthorized access');
     };
 
@@ -101,14 +103,13 @@ ListRouter.route('/:list')
   .patch(async (req, res, next) => {
     const db = req.app.get('db');
     const list_id = parseInt(req.params.list);
-    const { name, user_id, movies } = req.body;
-    const tmdb_ids = movies.map(movie => movie.tmdb_id);
+    const { name, user_id } = req.body;
 
     if (user_id !== req.user_id && !req.admin) {
       return next('Unauthorized access');
     };
 
-    if (!name && !movies) {
+    if (!name) {
       return next('Invalid request.');
     };
 
@@ -127,19 +128,6 @@ ListRouter.route('/:list')
 
     await ListService.edit(db, list_id, values)
       .catch(next);
-
-    await MovieService.addToDatabaseIfNotExists(db, movies);
-
-    const foundMovies = await MovieService.findByTMDB_ID(db, tmdb_ids);
-
-    const linkedMovies = foundMovies.map(movie => {
-      const { movie_id } = movie;
-      return { list_id, movie_id };
-    });
-
-    await MovieService.unlinkMovies(db, list_id);
-
-    await MovieService.linkMovies(db, linkedMovies);
 
     const response = (await ResponseService.prepareMovieLists(db, [list]))[0];
 

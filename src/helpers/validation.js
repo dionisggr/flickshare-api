@@ -12,10 +12,6 @@ const validation = {
       return next('Missing Bearer token')
     };
 
-    if (auth === API_KEY) {
-      return next();
-    };
-
     if (auth === ADMIN_KEY) {
       req.admin = true;
       return next();
@@ -25,6 +21,10 @@ const validation = {
       const decoded = await TokenService.validate(auth);
       req.user_id = decoded.user_id;
     } catch (error) { return next('Unauthorized access.') };
+
+    if (auth === API_KEY) {
+      return next();
+    };
     
     next();
   }

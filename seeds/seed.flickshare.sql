@@ -14,8 +14,7 @@ VALUES
   ('Top Rated', FALSE),
   ('Popular', FALSE),
   ('Latest', FALSE),
-  ('In Theaters', FALSE),
-  ('Upcoming', FALSE);
+  ('In Theaters', FALSE);
 
 INSERT INTO movies
   (name, tmdb_id, release_date, popularity, avg_vote, vote_count, poster, description)

@@ -31,10 +31,7 @@ MovieRouter.route('/')
 
     const newMovie = await MovieService.add(db, movie);
 
-    console.log(newMovie);
-
     return res.status(201).json(newMovie);
-
   });
 
 MovieRouter.route('/:movie')
@@ -78,6 +75,10 @@ MovieRouter.route('/lists/:list')
 
     try {
       let foundMovie = await MovieService.existsInDatabase(db, movie.tmdb_id);
+
+      if (!foundMovie) {
+        foundMovie = await MovieService.add(db, movie);
+      };
 
       const { movie_id } = foundMovie;
 
