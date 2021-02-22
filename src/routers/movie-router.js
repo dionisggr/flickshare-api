@@ -1,6 +1,7 @@
 const express = require('express');
 const MovieService = require('../services/movie-service');
 const ListService = require('../services/list-service');
+const ResponseService = require('../services/response-service');
 const Security = require('../helpers/security')
 
 const MovieRouter = express.Router();
@@ -29,7 +30,11 @@ MovieRouter.route('/')
       vote_count
     });
 
+    console.log('CONSOLE', movie);
+
     const newMovie = await MovieService.add(db, movie);
+
+    console.log(newMovie);
 
     return res.status(201).json(newMovie);
   });
@@ -80,6 +85,8 @@ MovieRouter.route('/lists/:list')
         foundMovie = await MovieService.add(db, movie);
       };
 
+      console.log(foundMovie);
+
       const { movie_id } = foundMovie;
 
       const listMovie = { movie_id, list_id };
@@ -99,15 +106,19 @@ MovieRouter.route('/:movie/lists/:list')
 
     const list = await ListService.findByID(db, list_id)
       .catch(next);
-
+    
     if (list.user_id !== req.user_id && !req.admin) {
       return next('Unauthorized access');
     };
 
     await MovieService.delete(db, list_id, movie_id)
       .catch(next);
+    
+    const editedList = await ListService.findByID(db, list_id);
 
-    return res.status(301).end();
+    const response = await ResponseService.prepareMovieLists(db, [editedList]);
+
+    return res.status(301).json(response);
   });
 
 module.exports = MovieRouter;
