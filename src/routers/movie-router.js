@@ -30,11 +30,7 @@ MovieRouter.route('/')
       vote_count
     });
 
-    console.log('CONSOLE', movie);
-
     const newMovie = await MovieService.add(db, movie);
-
-    console.log(newMovie);
 
     return res.status(201).json(newMovie);
   });
@@ -85,8 +81,6 @@ MovieRouter.route('/lists/:list')
         foundMovie = await MovieService.add(db, movie);
       };
 
-      console.log(foundMovie);
-
       const { movie_id } = foundMovie;
 
       const listMovie = { movie_id, list_id };
@@ -117,8 +111,6 @@ MovieRouter.route('/:movie/lists/:list')
     const editedList = await ListService.findByID(db, list_id);
 
     const response = await ResponseService.prepareMovieLists(db, [editedList]);
-
-    console.log('CONSOLE', response);
 
     return res.status(201).json(response);
   });
