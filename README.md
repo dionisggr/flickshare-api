@@ -37,9 +37,49 @@ https://github.com/dionisggr/flickshare-api
 ---
 
 ### Technology
-* **Front-End:** React.js, CSS3, HTML5, Javascript, Mocha, Chai, API fetch
+* **Front-End:** React.js, CSS3, HTML5, Javascript, API fetch
 * **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
 * **Development Environment:** Heroku, DBeaver, Postman
+
+---
+
+### Wireframes
+
+Welcome Page
+:-------------------------:
+![Welcome Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/welcome.png)
+
+Login Page
+:-------------------------:
+![Login Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/login.png)
+
+Register Page
+:-------------------------:
+![Register Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/register.png)
+
+Home Page
+:-------------------------:
+![Home Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/user-homepage.png)
+
+User Lists
+:-------------------------:
+![User Lists](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/user-lists.png)
+
+List Page
+:-------------------------:
+![List Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/welcome.png)
+
+Suggestions Page
+:-------------------------:
+![Suggestions Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/suggestions.png)
+
+All Users Page
+:-------------------------:
+![All Users Page (Admin)](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/admin-users.png)
+
+All Lists Page
+:-------------------------:
+![All Lists Page (Admin)](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/admin-lists.png)
 
 ---
 
@@ -753,19 +793,49 @@ Each endpoint manipulates information related to all data, only able to be acces
 
 ### Screenshots
 
+Welcome Page
+:-------------------------:
 ![Welcome Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/welcome.png)
+
+Login Page
+:-------------------------:
 ![Login Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/login.png)
+
+Register Page
+:-------------------------:
 ![Register Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/register.png)
+
+Home Page
+:-------------------------:
 ![Home Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/home.png)
+
+User Page
+:-------------------------:
+![User Lists](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/user.png)
+
+User Lists
+:-------------------------:
 ![User Lists](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/user-lists.png)
+
+User List
+:-------------------------:
 ![User List](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/user-list.png)
+
+List Edit
+:-------------------------:
 ![List Edit](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/user-list-edit.png)
+
+List Page
+:-------------------------:
 ![List Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/list.png)
+
+Suggestions Page
+:-------------------------:
 ![Suggestions Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/suggestions.png)
+
+Movie Search Page
+:-------------------------:
 ![Movie Search Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/movie-search.png)
-![Welcome Page](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/welcome.png)
-![All Users Page (Admin)](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/admin-all-users.png)
-![All Lists Page (Admin)](https://github.com/dionisggr/flickshare-client/blob/main/public/screenshots/admin-all-lists.png)
 
 ---
 
