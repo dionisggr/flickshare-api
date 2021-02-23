@@ -118,7 +118,9 @@ MovieRouter.route('/:movie/lists/:list')
 
     const response = await ResponseService.prepareMovieLists(db, [editedList]);
 
-    return res.status(301).json(response);
+    console.log('CONSOLE', response);
+
+    return res.status(201).json(response);
   });
 
 module.exports = MovieRouter;

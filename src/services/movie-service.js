@@ -39,8 +39,6 @@ const MovieService = {
   add(db, movie) {
     return db('movies')
       .insert(movie)
-      .onConflict('tmdb_id')
-      .ignore()
       .returning('*')
       .then(rows => rows[0]);
   }
