@@ -1,18 +1,16 @@
 # Flickshare App
-The Flickshare App is directed for anyone who really has a hard time finding suggestions on what to watch next! The app allows users to create an account and custom lists of movie interests, which may then be used to generated a list of suggestions and store them for coming back to it later.
-
-This API stop represents a way for the app to communicate with the list of users, movie lists and movies. The user data contains full name, email, username, password and admin privileges. The list data contains a name and an associated user.
+The Flickshare App is directed for anyone who really has a hard time finding suggestions on what to watch next! The app allows users to create an account and custom lists of movie interests, which may then be used to generated a list of movie suggestions and store them for coming back to it later.
 
 ---
 ### Working Prototype
-#### Client Live:
-https://flickshare-client.vercel.app
-
 #### API URL
 https://cryptic-badlands-24275.herokuapp.com
 
-#### API GitHub:
-https://github.com/dionisggr/flickshare-api
+#### Client Live:
+https://flickshare-client.vercel.app
+
+#### Client GitHub:
+https://github.com/dionisggr/flickshare
 
 ---
 
