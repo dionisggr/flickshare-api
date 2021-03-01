@@ -37,7 +37,7 @@ https://github.com/dionisggr/flickshare
 ### Technology
 * **Front-End:** React.js, CSS3, HTML5, Javascript, API fetch
 * **Back-End:** Javascript, Node.js, Express.js, Knex.js, PostgreSQL, Mocha, Chai, Supertest, Nodemon, Postgrator, Dotenv, JWT, Bcrypt, Morgan, XSS, CORS, Helmet, HTML5, CI scripts
-* **Development Environment:** Heroku, DBeaver, Postman
+* **Development Environment:** Vercel, Heroku, DBeaver, Postman
 
 ---
 
@@ -65,7 +65,7 @@ User Lists
 
 List Page
 :-------------------------:
-![List Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/welcome.png)
+![List Page](https://github.com/dionisggr/flickshare-client/blob/main/public/wireframes/list.png)
 
 Suggestions Page
 :-------------------------:
@@ -315,7 +315,7 @@ All values will be necessary in Update due to previous empty field validation
 **Auth required:** Yes
 - `Bearer my-secret-key`
 - `Bearer my-secret-admin`
-- `Bearer <JSON Web Token>` *(Generated at Login. See above for instructions)*
+- `Bearer <JSON Web Token>`
 
 | Name            | Type    | In     | Description      |
 | ----------------| ------- | ------ | ---------------- |
