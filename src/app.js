@@ -15,7 +15,8 @@ const app = express();
 
 app.use(helmet());
 app.use(cors({
-  origin: 'https://flickshare-client.vercel.app' 
+  // origin: 'https://flickshare-client.vercel.app' 
+  origin: 'http://localhost:3000' 
 }));
 app.use(morganLogger);
 app.use(express.json());
