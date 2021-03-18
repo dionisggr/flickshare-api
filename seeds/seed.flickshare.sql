@@ -5,8 +5,8 @@ TRUNCATE list_movies, movies, lists, users RESTART IDENTITY CASCADE;
 INSERT INTO users
   (username, first_name, last_name, email, password, admin)
 VALUES
-  ('admin', 'Lightning', 'Mcqueen', 'admin@email.com', '$2b$08$XpZWKEoZiLDDk6UMctbQCONuYPimQMUfhpgDNv0ZK.ZD3Jvldw2J2', TRUE), -- password: password
-  ('guest', 'Demo', 'Guest', 'demo@guest.com', '$2b$08$XpZWKEoZiLDDk6UMctbQCONuYPimQMUfhpgDNv0ZK.ZD3Jvldw2J2', FALSE); -- password: password
+  ('demo', 'Lightning', 'Mcqueen', 'demo@email.com', '$2b$08$XpZWKEoZiLDDk6UMctbQCONuYPimQMUfhpgDNv0ZK.ZD3Jvldw2J2', TRUE), -- password: password
+  ('guest', 'Guesty', 'Guest', 'guesty@guest.com', '$2b$08$XpZWKEoZiLDDk6UMctbQCONuYPimQMUfhpgDNv0ZK.ZD3Jvldw2J2', FALSE); -- password: password
 
 INSERT INTO lists
   (name, suggestion)
