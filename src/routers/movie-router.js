@@ -8,12 +8,15 @@ const MovieRouter = express.Router();
 
 MovieRouter.route('/')
   .get(async (req, res, next) => {
-    const db = req.app.get('db');
+    try {
+      const db = req.app.get('db');
 
-    const movies = await MovieService.getAll(db)
-      .catch(next);
-    
-    return res.json(movies);
+      const movies = await MovieService.getAll(db);
+
+      return res.json(movies);
+    } catch (error) {
+      next(error)
+    }    
   })
   .post(async (req, res) => {
     const db = req.app.get('db');

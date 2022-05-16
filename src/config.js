@@ -7,6 +7,6 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || 'my-secret-jwt',
   DATABASE_URL:
     process.env.DATABASE_URL ||
-      "postgresql://admin@localhost/flickshare",
-  TEST_DATABASE_URL: 'postgresql://admin@localhost/flickshare-test'
+      "postgres://bozxeqlvhhefnd:c4a56131095e735e3ae36ec0cdfdc34128fec37aeac8bf44b302ff4216f080cf@ec2-3-224-164-189.compute-1.amazonaws.com:5432/dc5i352cmdt649",
+  TEST_DATABASE_URL: 'postgres://bozxeqlvhhefnd:c4a56131095e735e3ae36ec0cdfdc34128fec37aeac8bf44b302ff4216f080cf@ec2-3-224-164-189.compute-1.amazonaws.com:5432/dc5i352cmdt649'
 };

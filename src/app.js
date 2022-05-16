@@ -15,16 +15,19 @@ const app = express();
 
 app.use(helmet());
 app.use(cors({
-  origin: 'https://flickshare-client.vercel.app' 
+  origin: [
+    'https://flickshare-client.vercel.app',
+    'http://localhost:3000',
+  ],
 }));
 app.use(morganLogger);
 app.use(express.json());
 
 app.use('/', LandingRouter);
-app.use('/api/users', authorization, UserRouter);
-app.use('/api/lists', authorization, ListRouter);
-app.use('/api/movies', authorization, MovieRouter);
-app.use('/api', authorization, AccessRouter);
+// app.use('/api/users', UserRouter);
+// app.use('/api/lists', ListRouter);
+app.use('/api/movies', MovieRouter);
+// app.use('/api', AccessRouter);
 app.use(errorHandler);
 
 module.exports = app;
