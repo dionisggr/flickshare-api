@@ -23,11 +23,11 @@ app.use(cors({
 app.use(morganLogger);
 app.use(express.json());
 
-app.use('/', LandingRouter);
-// app.use('/api/users', UserRouter);
-// app.use('/api/lists', ListRouter);
-app.use('/api/movies', MovieRouter);
-// app.use('/api', AccessRouter);
+app.use('/', authorization, LandingRouter);
+app.use('/api/users', authorization, UserRouter);
+app.use('/api/lists', authorization, ListRouter);
+app.use('/api/movies', authorization, MovieRouter);
+app.use('/api', authorization, AccessRouter);
 app.use(errorHandler);
 
 module.exports = app;

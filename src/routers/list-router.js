@@ -9,30 +9,32 @@ const ListRouter = express.Router();
 
 ListRouter.route('/')
   .get(async (req, res, next) => {
-    const db = req.app.get('db');
+    try {
+      const db = req.app.get('db');
 
-    let lists;
-    
-    if (req.admin) {
-      lists = await ListService.getAll(db)
-        .catch(next);
-    } else if (req.user_id) {
-      lists = await ListService.getAllUserLists(db, req.user_id)
-        .catch(next);
-    } else {
-      return next('Unauthorized access');
-    };
+      let lists;
+      
+      if (req.admin) {
+        lists = await ListService.getAll(db)
+      } else if (req.user_id) {
+        lists = await ListService.getAllUserLists(db, req.user_id)
+      } else {
+        return next('Unauthorized access');
+      };
 
-    const response = await ResponseService.prepareMovieLists(db, lists);
+      const response = await ResponseService.prepareMovieLists(db, lists);
 
-    return res.json(response);
+      return res.json(response);
+    } catch (error) {
+      next(error);
+    }
   })
   .post(async (req, res, next) => {
     const db = req.app.get('db');
     const { name, user_id, suggestion, movies } = req.body;
     const tmdb_ids = movies.map(movie => movie.tmdb_id);
 
-    // if (!user_id && !req.admin) {
+    // if (!user_id || !req.admin) {
     //   return next('Unauthorized access');
     // };
 
@@ -92,7 +94,7 @@ ListRouter.route('/:list')
     const list = await ListService.findByID(db, list_id)
       .catch(next);
     
-    if (list.user_id && (list.user_id !== req.user_id && !req.admin)) {
+    if (list.user_id && (list.user_id !== req.user_id || !req.admin)) {
       return next('Unauthorized access');
     };
 
@@ -105,7 +107,7 @@ ListRouter.route('/:list')
     const list_id = parseInt(req.params.list);
     const { name, user_id } = req.body;
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
@@ -140,7 +142,7 @@ ListRouter.route('/:list')
     const list = await ListService.findByID(db, list_id)
       .catch(next);
 
-    if (list.user_id !== req.user_id && !req.admin) {
+    if (list.user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
@@ -155,7 +157,7 @@ ListRouter.route('/users/:user')
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
     
@@ -172,7 +174,7 @@ ListRouter.route('/suggestions/users/:user')
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
     

@@ -64,7 +64,7 @@ UserRouter.route('/:user')
     const db = req.app.get('db');
     const user_id = req.params.user;
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
@@ -77,7 +77,7 @@ UserRouter.route('/:user')
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
@@ -100,7 +100,7 @@ UserRouter.route('/:user')
     const db = req.app.get('db');
     const user_id = parseInt(req.params.user);
 
-    if (user_id !== req.user_id && !req.admin) {
+    if (user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 

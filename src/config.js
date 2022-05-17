@@ -7,6 +7,6 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET || 'my-secret-jwt',
   DATABASE_URL:
     process.env.DATABASE_URL ||
-      "postgres://bozxeqlvhhefnd:c4a56131095e735e3ae36ec0cdfdc34128fec37aeac8bf44b302ff4216f080cf@ec2-3-224-164-189.compute-1.amazonaws.com:5432/dc5i352cmdt649",
-  TEST_DATABASE_URL: 'postgres://bozxeqlvhhefnd:c4a56131095e735e3ae36ec0cdfdc34128fec37aeac8bf44b302ff4216f080cf@ec2-3-224-164-189.compute-1.amazonaws.com:5432/dc5i352cmdt649'
+      "postgres://fghlypqkqpnvnc:72e965b7aeb419afb053a08441c8e27c7029b3eb005a7812f172d61ea610e444@ec2-54-165-184-219.compute-1.amazonaws.com:5432/df60cg0sot72h4",
+  TEST_DATABASE_URL: 'postgres://fghlypqkqpnvnc:72e965b7aeb419afb053a08441c8e27c7029b3eb005a7812f172d61ea610e444@ec2-54-165-184-219.compute-1.amazonaws.com:5432/df60cg0sot72h4'
 };

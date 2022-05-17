@@ -57,7 +57,7 @@ MovieRouter.route('/lists/:list')
     const list = await ListService.findByID(db, list_id)
       .catch(next);
 
-    if (list.user_id !== req.user_id && !req.admin) {
+    if (list.user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
@@ -104,7 +104,7 @@ MovieRouter.route('/:movie/lists/:list')
     const list = await ListService.findByID(db, list_id)
       .catch(next);
     
-    if (list.user_id !== req.user_id && !req.admin) {
+    if (list.user_id !== req.user_id || !req.admin) {
       return next('Unauthorized access');
     };
 
